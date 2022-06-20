@@ -6,6 +6,7 @@ import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/configs/url_config.dart';
+import 'package:x_bank/models/account.dart';
 import 'package:x_bank/models/user_info.dart';
 import 'package:x_bank/utils/navigator_util.dart';
 import 'package:x_bank/utils/network_util.dart';
@@ -46,7 +47,21 @@ class LoginActivityController extends BaseController {
     baseActivityState.baseDialogController?.show(AppConfig.appS.loading);
     await NetworkUtil.request<UserInfo>(Method.POST, UrlConfig.users_sign_in,
         data: data, successCallback: (data, baseEntity) async {
+      bool isCode2fa = code_2fa != null;
       if (data != null) {
+        Account? account = await applicationController.getAccount(
+            reLogin: false, showErrorTips: isCode2fa);
+        if (account == null) {
+          code_2fa = null;
+          if (!isCode2fa) {
+            ViewUtil.showPopup2faInputViewDialog(context, (value) {
+              code_2fa = value;
+            }, () {
+              doLogin();
+            });
+          }
+          return;
+        }
         String token = data.access_token ?? "";
         String refreshToken = data.refresh_token ?? "";
         applicationController.updateToken(token);
@@ -56,7 +71,7 @@ class LoginActivityController extends BaseController {
       }
     }, errorCallback: (e) async {
       code_2fa = null;
-      if (e.msg.contains("two_factor_authentication")) {
+      if (e.msg.contains("grecaptcha is not defined")) {
         ViewUtil.showPopup2faInputViewDialog(context, (value) {
           code_2fa = value;
         }, () {

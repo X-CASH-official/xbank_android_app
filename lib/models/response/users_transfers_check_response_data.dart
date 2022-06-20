@@ -27,5 +27,6 @@ class UsersTransfersCheckResponseData {
   factory UsersTransfersCheckResponseData.fromJson(Map<String, dynamic> json) =>
       _$UsersTransfersCheckResponseDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UsersTransfersCheckResponseDataToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$UsersTransfersCheckResponseDataToJson(this);
 }

@@ -114,10 +114,25 @@ class NetworkUtil {
                     .contains(UrlConfig.users_sign_in))) {
           await decodeMessage(response, errorCode, error);
         } else {
-          await error(ErrorEntity(code: errorCode, msg: ""));
-          ApplicationController.getInstance().loginOut(
-              AppConfig.navigatorStateKey.currentContext!,
-              showTokenTips: true);
+          bool isDecode = false;
+          if (response != null) {
+            List<String> strs = response.realUri
+                .toString()
+                .replaceAll(UrlConfig.getBaseUrl() + "/", "")
+                .split("/");
+            if (strs.length >= 3 &&
+                strs[0] == "users" &&
+                strs[2] == "account") {
+              isDecode = true;
+              await decodeMessage(response, errorCode, error);
+            }
+          }
+          if (!isDecode) {
+            await error(ErrorEntity(code: errorCode, msg: ""));
+            ApplicationController.getInstance().loginOut(
+                AppConfig.navigatorStateKey.currentContext!,
+                showTokenTips: true);
+          }
         }
         break;
       case 404:

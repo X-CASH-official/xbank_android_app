@@ -52,7 +52,7 @@ class SplashActivityState extends NewBaseActivityState<SplashActivity> {
     return SingleChildScrollView(
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         NormalImageView(
-            margin: EdgeInsets.only(top: Dimens.margin_super_broad),
+            margin: EdgeInsets.only(top: 3 * Dimens.margin_super_broad),
             width: Dimens.splash_activity_icon_width,
             height: Dimens.splash_activity_icon_width,
             assetUrl: AssetImageConfig.icon,

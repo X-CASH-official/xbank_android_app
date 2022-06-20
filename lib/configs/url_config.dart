@@ -1,3 +1,5 @@
+import 'package:framework/utils/device_util.dart';
+
 class UrlConfig {
   static const String urlKey = "#key#";
   static const String urlKey1 = "#key1#";
@@ -5,6 +7,10 @@ class UrlConfig {
   static const String release_url = "https://api.x-bank.io/v1";
 
   static const String debug_url = "https://api.x-bank.io/v1";
+
+  static String getBaseUrl() {
+    return DeviceUtil.isDebug() ? release_url : debug_url;
+  }
 
   static const String users_sign_up = "/users/sign-up";
 

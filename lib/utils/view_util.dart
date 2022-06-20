@@ -12,6 +12,7 @@ import 'package:x_bank/widgets/normal/normal_popup_route.dart';
 import 'package:x_bank/widgets/normal/normal_popup_view.dart';
 
 import 'keyboard_util.dart';
+import 'navigator_util.dart';
 
 class ViewUtil {
   static PlaceholderWidgetBuilder getDefaultPlaceholder(BuildContext context,
@@ -129,7 +130,11 @@ class ViewUtil {
       child: Container(
         width: viewWidth,
         child: Popup2faInputView(
-            onTextChange: onTextChange, onSubmitClick: onSubmitClick),
+            onTextChange: onTextChange,
+            onSubmitClick: () {
+              NavigatorUtil.pop(context, NavigatorResultType.SUCCESS);
+              onSubmitClick?.call();
+            }),
       ),
     );
     Navigator.push(

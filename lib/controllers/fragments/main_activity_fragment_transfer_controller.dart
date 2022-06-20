@@ -28,6 +28,7 @@ class MainActivityFragmentTransferController extends BaseController {
   String? paymentId;
   String? amount;
   UsersTransfersCheckResponseData? usersTransfersCheckResponseData;
+
   @override
   void initController(State state, Bundle? bundle) {
     applicationController = ApplicationController.getInstance();
@@ -116,7 +117,7 @@ class MainActivityFragmentTransferController extends BaseController {
             .replaceAll(UrlConfig.urlKey, userInfo.user_id!)
             .replaceAll(UrlConfig.urlKey1, account.id!),
         data: data, successCallback: (data, baseEntity) async {
-      usersTransfersCheckResponseData=data;
+      usersTransfersCheckResponseData = data;
     }, errorCallback: (e) async {
       ToastUtil.showShortToast(e.msg);
     });

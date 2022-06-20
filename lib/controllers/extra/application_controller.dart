@@ -85,7 +85,8 @@ class ApplicationController extends ChangeNotifier {
     return userInfo;
   }
 
-  Future<Account?> getAccount() async {
+  Future<Account?> getAccount(
+      {bool reLogin = true, bool showErrorTips = true}) async {
     if (account != null) {
       return account;
     }
@@ -101,7 +102,15 @@ class ApplicationController extends ChangeNotifier {
         account = data;
       }
     }, errorCallback: (e) async {
-      ToastUtil.showShortToast(e.msg);
+      if (reLogin && e.code == 401) {
+        ApplicationController.getInstance().loginOut(
+            AppConfig.navigatorStateKey.currentContext!,
+            showTokenTips: true);
+        return;
+      }
+      if (showErrorTips) {
+        ToastUtil.showShortToast(e.msg);
+      }
     });
     return account;
   }
