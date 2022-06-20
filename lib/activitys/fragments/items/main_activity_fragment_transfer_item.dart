@@ -68,14 +68,14 @@ class MainActivityFragmentTransferItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         NormalTextView(
-          color: SColors.text_content,
+          color: data.type=="in"?SColors.transfer_in:SColors.transfer_out,
           fontSize: Dimens.font_normal,
           content: ((data.atomic_amount ?? 0) / 1000000).toString() +
               AppConfig.appS.xcash_unit_text,
         ),
         DimenBoxs.vBoxSuperNarrow,
         NormalTextView(
-          color: SColors.text_content,
+          color: data.type=="in"?SColors.transfer_in:SColors.transfer_out,
           fontSize: Dimens.font_normal,
           content:
               (data.amount_usd ?? 0).toString() + AppConfig.appS.usd_unit_text,

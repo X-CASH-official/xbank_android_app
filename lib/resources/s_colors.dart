@@ -19,4 +19,9 @@ class SColors {
   static const Color text_hint = Color(0xFFB2B2B2);
 
   static const Color log_out = Color(0xFFDF5451);
+
+  static const Color transfer_in = Color(0xFF09E80E);
+
+  static const Color transfer_out = Color(0xFFDF5451);
+
 }

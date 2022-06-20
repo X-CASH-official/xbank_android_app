@@ -49,6 +49,11 @@ class LoginActivityController extends BaseController {
         data: data, successCallback: (data, baseEntity) async {
       bool isCode2fa = code_2fa != null;
       if (data != null) {
+        String token = data.access_token ?? "";
+        String refreshToken = data.refresh_token ?? "";
+        applicationController.updateToken(token);
+        applicationController.updateRefreshToken(refreshToken);
+        applicationController.updateUserInfo(data);
         Account? account = await applicationController.getAccount(
             reLogin: false, showErrorTips: isCode2fa);
         if (account == null) {
@@ -62,11 +67,6 @@ class LoginActivityController extends BaseController {
           }
           return;
         }
-        String token = data.access_token ?? "";
-        String refreshToken = data.refresh_token ?? "";
-        applicationController.updateToken(token);
-        applicationController.updateRefreshToken(refreshToken);
-        applicationController.updateUserInfo(data);
         jumpToMainActivity();
       }
     }, errorCallback: (e) async {
