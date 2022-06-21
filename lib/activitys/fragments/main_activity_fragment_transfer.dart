@@ -179,7 +179,9 @@ class MainActivityFragmentTransferState
           Transfer transfer = _controller.pullRefreshController.datas[position];
           return MainActivityFragmentTransferItem(
             data: transfer,
-            onClick: () {},
+            onClick: () {
+              _controller.jumpToTransferDetailsActivity(transfer);
+            },
           );
         },
         onRefresh: () async {

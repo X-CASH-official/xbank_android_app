@@ -42,7 +42,7 @@ class MainActivityFragmentTransferItem extends StatelessWidget {
   }
 
   Widget _buildContentView() {
-    String time = (StringUtil.convertUtcTime(data.created_at ?? "0"));
+    String time = StringUtil.convertUtcTime(data.created_at ?? "0");
     return Row(
       children: [
         Expanded(child: _buildDetailsView()),
@@ -68,14 +68,14 @@ class MainActivityFragmentTransferItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         NormalTextView(
-          color: data.type=="in"?SColors.transfer_in:SColors.transfer_out,
+          color: data.type == "in" ? SColors.transfer_in : SColors.transfer_out,
           fontSize: Dimens.font_normal,
           content: ((data.atomic_amount ?? 0) / 1000000).toString() +
               AppConfig.appS.xcash_unit_text,
         ),
         DimenBoxs.vBoxSuperNarrow,
         NormalTextView(
-          color: data.type=="in"?SColors.transfer_in:SColors.transfer_out,
+          color: data.type == "in" ? SColors.transfer_in : SColors.transfer_out,
           fontSize: Dimens.font_normal,
           content:
               (data.amount_usd ?? 0).toString() + AppConfig.appS.usd_unit_text,

@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
@@ -139,6 +138,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "token_invalid_tips":
             MessageLookupByLibrary.simpleMessage("Token invalid"),
+        "transfer_details_activity_title":
+            MessageLookupByLibrary.simpleMessage("Transfer Details"),
+        "transfer_details_activity_transfer_amount_text":
+            MessageLookupByLibrary.simpleMessage("Amount:"),
+        "transfer_details_activity_transfer_amount_usd_text":
+            MessageLookupByLibrary.simpleMessage("Amount usd:"),
+        "transfer_details_activity_transfer_block_height_text":
+            MessageLookupByLibrary.simpleMessage("Block height:"),
+        "transfer_details_activity_transfer_fee_text":
+            MessageLookupByLibrary.simpleMessage("Fee:"),
+        "transfer_details_activity_transfer_info_text":
+            MessageLookupByLibrary.simpleMessage("Transfer Info:"),
+        "transfer_details_activity_transfer_payment_id_text":
+            MessageLookupByLibrary.simpleMessage("Payment id:"),
+        "transfer_details_activity_transfer_payment_time_text":
+            MessageLookupByLibrary.simpleMessage("Time:"),
+        "transfer_details_activity_transfer_recipient_address_text":
+            MessageLookupByLibrary.simpleMessage("Address:"),
+        "transfer_details_activity_transfer_status_text":
+            MessageLookupByLibrary.simpleMessage("Status:"),
+        "transfer_details_activity_transfer_tx_hash_text":
+            MessageLookupByLibrary.simpleMessage("Tx hash:"),
+        "transfer_details_activity_transfer_tx_key_text":
+            MessageLookupByLibrary.simpleMessage("Tx hash:"),
+        "transfer_details_activity_transfer_tx_type_text":
+            MessageLookupByLibrary.simpleMessage("Tx type:"),
         "usd_unit_text": MessageLookupByLibrary.simpleMessage("USD"),
         "validate_2fa": MessageLookupByLibrary.simpleMessage("2FA validate"),
         "xcash_unit_text": MessageLookupByLibrary.simpleMessage("XCASH")

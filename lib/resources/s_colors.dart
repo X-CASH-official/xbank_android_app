@@ -23,5 +23,4 @@ class SColors {
   static const Color transfer_in = Color(0xFF09E80E);
 
   static const Color transfer_out = Color(0xFFDF5451);
-
 }

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -670,6 +669,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Transfer Details`
+  String get transfer_details_activity_title {
+    return Intl.message(
+      'Transfer Details',
+      name: 'transfer_details_activity_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Info:`
+  String get transfer_details_activity_transfer_info_text {
+    return Intl.message(
+      'Transfer Info:',
+      name: 'transfer_details_activity_transfer_info_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tx type:`
+  String get transfer_details_activity_transfer_tx_type_text {
+    return Intl.message(
+      'Tx type:',
+      name: 'transfer_details_activity_transfer_tx_type_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tx hash:`
+  String get transfer_details_activity_transfer_tx_hash_text {
+    return Intl.message(
+      'Tx hash:',
+      name: 'transfer_details_activity_transfer_tx_hash_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tx hash:`
+  String get transfer_details_activity_transfer_tx_key_text {
+    return Intl.message(
+      'Tx hash:',
+      name: 'transfer_details_activity_transfer_tx_key_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address:`
+  String get transfer_details_activity_transfer_recipient_address_text {
+    return Intl.message(
+      'Address:',
+      name: 'transfer_details_activity_transfer_recipient_address_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block height:`
+  String get transfer_details_activity_transfer_block_height_text {
+    return Intl.message(
+      'Block height:',
+      name: 'transfer_details_activity_transfer_block_height_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount:`
+  String get transfer_details_activity_transfer_amount_text {
+    return Intl.message(
+      'Amount:',
+      name: 'transfer_details_activity_transfer_amount_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fee:`
+  String get transfer_details_activity_transfer_fee_text {
+    return Intl.message(
+      'Fee:',
+      name: 'transfer_details_activity_transfer_fee_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount usd:`
+  String get transfer_details_activity_transfer_amount_usd_text {
+    return Intl.message(
+      'Amount usd:',
+      name: 'transfer_details_activity_transfer_amount_usd_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status:`
+  String get transfer_details_activity_transfer_status_text {
+    return Intl.message(
+      'Status:',
+      name: 'transfer_details_activity_transfer_status_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment id:`
+  String get transfer_details_activity_transfer_payment_id_text {
+    return Intl.message(
+      'Payment id:',
+      name: 'transfer_details_activity_transfer_payment_id_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time:`
+  String get transfer_details_activity_transfer_payment_time_text {
+    return Intl.message(
+      'Time:',
+      name: 'transfer_details_activity_transfer_payment_time_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -683,10 +812,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

@@ -5,12 +5,15 @@ import 'package:framework/base/controllers/base_controller.dart';
 import 'package:framework/utils/network/method.dart';
 import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/app_config.dart';
+import 'package:x_bank/configs/key_config.dart';
+import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/configs/url_config.dart';
 import 'package:x_bank/models/account.dart';
 import 'package:x_bank/models/response/users_accounts_balance_summary_response_data.dart';
 import 'package:x_bank/models/response/users_transfers_check_response_data.dart';
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/models/user_info.dart';
+import 'package:x_bank/utils/navigator_util.dart';
 import 'package:x_bank/utils/network_util.dart';
 import 'package:x_bank/widgets/pull_refresh_view.dart';
 
@@ -162,6 +165,13 @@ class MainActivityFragmentTransferController extends BaseController {
       ToastUtil.showShortToast(e.msg);
     });
     baseActivityState.baseDialogController?.hide();
+  }
+
+  void jumpToTransferDetailsActivity(Transfer transfer) async {
+    Bundle bundle = Bundle();
+    bundle.putObject(KeyConfig.transfer_key, transfer);
+    NavigatorUtil.jumpTo(context, ActivityName.TransferDetailsActivity,
+        bundle: bundle);
   }
 
   @override
