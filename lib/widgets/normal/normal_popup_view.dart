@@ -10,6 +10,7 @@ class NormalPopupView extends StatelessWidget {
   final double? top;
   final double? right;
   final double? bottom;
+  final Color? background;
 
   const NormalPopupView(
       {Key? key,
@@ -20,7 +21,8 @@ class NormalPopupView extends StatelessWidget {
       this.left,
       this.top,
       this.right,
-      this.bottom})
+      this.bottom,
+      this.background = Colors.transparent})
       : super(key: key);
 
   @override
@@ -45,7 +47,7 @@ class NormalPopupView extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          color: Colors.transparent,
+          color:background,
         ),
         Positioned(
             child: GestureDetector(

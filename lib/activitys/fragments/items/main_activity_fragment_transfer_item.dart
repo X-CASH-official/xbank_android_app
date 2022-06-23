@@ -70,7 +70,7 @@ class MainActivityFragmentTransferItem extends StatelessWidget {
         NormalTextView(
           color: data.type == "in" ? SColors.transfer_in : SColors.transfer_out,
           fontSize: Dimens.font_normal,
-          content: ((data.atomic_amount ?? 0) / 1000000).toString() +
+          content: ((data.atomic_amount ?? 0) / 1000000).toString() +" "+
               AppConfig.appS.xcash_unit_text,
         ),
         DimenBoxs.vBoxSuperNarrow,
@@ -78,7 +78,7 @@ class MainActivityFragmentTransferItem extends StatelessWidget {
           color: data.type == "in" ? SColors.transfer_in : SColors.transfer_out,
           fontSize: Dimens.font_normal,
           content:
-              (data.amount_usd ?? 0).toString() + AppConfig.appS.usd_unit_text,
+              (data.amount_usd ?? 0).toString()+" " + AppConfig.appS.usd_unit_text,
         ),
       ],
     );

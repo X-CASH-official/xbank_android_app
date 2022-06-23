@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:framework/base/base_callback_function.dart';
 import 'package:framework/utils/screen_util.dart';
 import 'package:x_bank/activitys/views/popup_2fa_input_view.dart';
+import 'package:x_bank/activitys/views/popup_transfer_view.dart';
 import 'package:x_bank/configs/assets_config.dart';
+import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/resources/dimens.dart';
 import 'package:x_bank/resources/s_colors.dart';
 import 'package:x_bank/widgets/normal/normal_popup_route.dart';
@@ -124,6 +126,7 @@ class ViewUtil {
     double viewWidth = maxWidth * 0.8;
     double marginLeft = maxWidth * 0.1;
     Widget contentView = NormalPopupView(
+      background:SColors.popup_background,
       left: marginLeft,
       top: 0,
       bottom: 0,
@@ -135,6 +138,37 @@ class ViewUtil {
               NavigatorUtil.pop(context, NavigatorResultType.SUCCESS);
               onSubmitClick?.call();
             }),
+      ),
+    );
+    Navigator.push(
+      context,
+      NormalPopupRoute(
+        child: contentView,
+      ),
+    );
+  }
+
+  static void showPopupTransferConfirmViewDialog<T>(BuildContext context,Transfer transfer,VoidCallback? onSubmitClick,
+      {BoxDecoration? decoration,
+        Color background = Colors.white,
+        bool releaseFocus = true}) {
+    if (releaseFocus) {
+      KeyBoardUtil.hideKeyboard(context);
+    }
+    double maxWidth = min(ScreenUtil.width, ScreenUtil.height);
+    double viewWidth = maxWidth * 0.8;
+    double marginLeft = maxWidth * 0.1;
+    Widget contentView = NormalPopupView(
+      background:SColors.popup_background,
+      left: marginLeft,
+      top: 0,
+      bottom: 0,
+      child: Container(
+        width: viewWidth,
+        child: PopupTransferView(
+            transfer: transfer,
+            onSubmitClick:onSubmitClick
+        ),
       ),
     );
     Navigator.push(

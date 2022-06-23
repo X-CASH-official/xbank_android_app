@@ -9,6 +9,8 @@ class SColors {
 
   static const Color loading_dialog_background = Color(0x88000000);
 
+  static const Color popup_background = Color(0x33000000);
+
   static const Color main_help = Color(0xFFFFFFFF);
   static const Color main_help_transparent = Color(0x99FFFFFF);
 

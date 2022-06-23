@@ -710,10 +710,10 @@ class S {
     );
   }
 
-  /// `Tx hash:`
+  /// `Tx key:`
   String get transfer_details_activity_transfer_tx_key_text {
     return Intl.message(
-      'Tx hash:',
+      'Tx key:',
       name: 'transfer_details_activity_transfer_tx_key_text',
       desc: '',
       args: [],

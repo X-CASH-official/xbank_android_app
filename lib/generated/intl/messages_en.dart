@@ -161,7 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "transfer_details_activity_transfer_tx_hash_text":
             MessageLookupByLibrary.simpleMessage("Tx hash:"),
         "transfer_details_activity_transfer_tx_key_text":
-            MessageLookupByLibrary.simpleMessage("Tx hash:"),
+            MessageLookupByLibrary.simpleMessage("Tx key:"),
         "transfer_details_activity_transfer_tx_type_text":
             MessageLookupByLibrary.simpleMessage("Tx type:"),
         "usd_unit_text": MessageLookupByLibrary.simpleMessage("USD"),

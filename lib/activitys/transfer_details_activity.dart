@@ -56,7 +56,7 @@ class TransferDetailsActivityState
                 color: SColors.text_title,
                 margin: EdgeInsets.all(Dimens.margin_normal),
                 fontSize: Dimens.font_broad),
-            DimenBoxs.vBoxNormal,
+            DimenBoxs.vBoxNarrow,
             Container(
               margin: EdgeInsets.symmetric(horizontal: Dimens.margin_normal),
               child: _buildContentView(),
@@ -81,34 +81,34 @@ class TransferDetailsActivityState
               content: _controller.transfer!.tx_hash,
             ),
             DimenBoxs.vBoxNormal,
-            NormalTransferView(
-              title:
-                  AppConfig.appS.transfer_details_activity_transfer_tx_key_text,
-              content: _controller.transfer!.tx_key,
-            ),
-            DimenBoxs.vBoxNormal,
+            // NormalTransferView(
+            //   title:
+            //       AppConfig.appS.transfer_details_activity_transfer_tx_key_text,
+            //   content: _controller.transfer!.tx_key,
+            // ),
+            // DimenBoxs.vBoxNormal,
             NormalTransferView(
               title: AppConfig.appS
                   .transfer_details_activity_transfer_recipient_address_text,
               content: _controller.transfer!.recipient_address,
             ),
-            DimenBoxs.vBoxNormal,
-            NormalTransferView(
-              title: AppConfig
-                  .appS.transfer_details_activity_transfer_block_height_text,
-              content: _controller.transfer!.block_height.toString(),
-            ),
+            // DimenBoxs.vBoxNormal,
+            // NormalTransferView(
+            //   title: AppConfig
+            //       .appS.transfer_details_activity_transfer_block_height_text,
+            //   content: _controller.transfer!.block_height.toString(),
+            // ),
             DimenBoxs.vBoxNormal,
             NormalTransferView(
                 title: AppConfig
                     .appS.transfer_details_activity_transfer_amount_text,
-                content: ((_controller.transfer!.atomic_amount ?? 0) / 100000)
+                content: ((_controller.transfer!.atomic_amount ?? 0) / 1000000)
                     .toString()),
             DimenBoxs.vBoxNormal,
             NormalTransferView(
                 title:
                     AppConfig.appS.transfer_details_activity_transfer_fee_text,
-                content: ((_controller.transfer!.atomic_fee ?? 0) / 100000)
+                content: ((_controller.transfer!.atomic_fee ?? 0) / 1000000)
                     .toString()),
             DimenBoxs.vBoxNormal,
             NormalTransferView(
@@ -138,7 +138,13 @@ class TransferDetailsActivityState
         : Container();
     return Container(
         child: contentView,
+        decoration: BoxDecoration(
+          color: SColors.main_help,
+          borderRadius: BorderRadius.all(
+            Radius.circular(Dimens.radius_normal),
+          ),
+        ),
         padding: EdgeInsets.symmetric(horizontal:Dimens.margin_normal),
-        color: SColors.main_help);
+      );
   }
 }

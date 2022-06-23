@@ -65,7 +65,7 @@
   "transfer_details_activity_transfer_info_text": "Transfer Info:",
   "transfer_details_activity_transfer_tx_type_text": "Tx type:",
   "transfer_details_activity_transfer_tx_hash_text": "Tx hash:",
-  "transfer_details_activity_transfer_tx_key_text": "Tx hash:",
+  "transfer_details_activity_transfer_tx_key_text": "Tx key:",
   "transfer_details_activity_transfer_recipient_address_text": "Address:",
   "transfer_details_activity_transfer_block_height_text": "Block height:",
   "transfer_details_activity_transfer_amount_text": "Amount:",

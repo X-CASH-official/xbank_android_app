@@ -15,6 +15,7 @@ import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/models/user_info.dart';
 import 'package:x_bank/utils/navigator_util.dart';
 import 'package:x_bank/utils/network_util.dart';
+import 'package:x_bank/utils/view_util.dart';
 import 'package:x_bank/widgets/pull_refresh_view.dart';
 
 import '../extra/application_controller.dart';
@@ -30,7 +31,7 @@ class MainActivityFragmentTransferController extends BaseController {
   String? address;
   String? paymentId;
   String? amount;
-  UsersTransfersCheckResponseData? usersTransfersCheckResponseData;
+  Transfer? transfer;
 
   @override
   void initController(State state, Bundle? bundle) {
@@ -110,24 +111,32 @@ class MainActivityFragmentTransferController extends BaseController {
     }
     Map<String, dynamic> data = {};
     data["address"] = address;
-    data["payment_id"] = paymentId;
-    data["atomic_amount"] = amount;
+    if (paymentId != null) {
+      data["payment_id"] = paymentId;
+    }
+    data["atomic_amount"] = int.parse(amount!) * 1000000;
     data["currency"] = "XCASH";
     baseActivityState.baseDialogController?.show(AppConfig.appS.loading);
-    await NetworkUtil.request<UsersTransfersCheckResponseData>(
+    await NetworkUtil.request<Transfer>(
         Method.POST,
         UrlConfig.users_transfers_check
             .replaceAll(UrlConfig.urlKey, userInfo.user_id!)
             .replaceAll(UrlConfig.urlKey1, account.id!),
         data: data, successCallback: (data, baseEntity) async {
-      usersTransfersCheckResponseData = data;
+      transfer = data;
+      if (data != null) {
+        ViewUtil.showPopupTransferConfirmViewDialog(
+            context, data, () async{
+         await sendTransfer(data);
+        });
+      }
     }, errorCallback: (e) async {
       ToastUtil.showShortToast(e.msg);
     });
     baseActivityState.baseDialogController?.hide();
   }
 
-  Future<void> sendTransfer() async {
+  Future<void> sendTransfer(Transfer transfer) async {
     if (address == null) {
       ToastUtil.showShortToast(
           AppConfig.appS.main_activity_fragment_transfer_address_empty_tips);
@@ -153,14 +162,14 @@ class MainActivityFragmentTransferController extends BaseController {
     data["code_2fa"] = amount;
     data["currency"] = "XCASH";
     baseActivityState.baseDialogController?.show(AppConfig.appS.loading);
-    await NetworkUtil.request<UserInfo>(
+    await NetworkUtil.request<Transfer>(
         Method.POST,
         UrlConfig.users_transfers
             .replaceAll(UrlConfig.urlKey, userInfo.user_id!)
             .replaceAll(UrlConfig.urlKey1, account.id!),
         data: data, successCallback: (data, baseEntity) async {
-      String token = data?.access_token ?? "";
-      ToastUtil.showShortToast(token);
+
+
     }, errorCallback: (e) async {
       ToastUtil.showShortToast(e.msg);
     });
