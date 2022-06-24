@@ -48,6 +48,11 @@ class MainActivityFragmentSettingsController extends BaseController {
         showTokenTips: false);
   }
 
+  void enterAboutUs() {
+    applicationController.enterWebViewActivity(context, AppConfig.appS.main_activity_fragment_settings_about_text, AppConfig.appS.main_activity_fragment_settings_about_us_url);
+  }
+
+
   @override
   void dispose() {
     super.dispose();

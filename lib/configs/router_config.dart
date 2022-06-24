@@ -4,13 +4,15 @@ import 'package:x_bank/activitys/main_activity.dart';
 import 'package:x_bank/activitys/register_activity.dart';
 import 'package:x_bank/activitys/splash_activity.dart';
 import 'package:x_bank/activitys/transfer_details_activity.dart';
+import 'package:x_bank/activitys/web_view_activity.dart';
 
 enum ActivityName {
   SplashActivity,
   MainActivity,
   LoginActivity,
   RegisterActivity,
-  TransferDetailsActivity
+  TransferDetailsActivity,
+  WebViewActivity
 }
 
 class RouterConfig {
@@ -25,5 +27,7 @@ class RouterConfig {
         ActivityBuilder(builderFunction: (bundle) => RegisterActivity(bundle)),
     ActivityName.TransferDetailsActivity: ActivityBuilder(
         builderFunction: (bundle) => TransferDetailsActivity(bundle)),
+    ActivityName.WebViewActivity: ActivityBuilder(
+        builderFunction: (bundle) => WebViewActivity(bundle)),
   };
 }

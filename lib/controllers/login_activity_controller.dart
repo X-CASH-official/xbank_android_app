@@ -71,14 +71,15 @@ class LoginActivityController extends BaseController {
       }
     }, errorCallback: (e) async {
       code_2fa = null;
-      if (e.msg.contains("grecaptcha is not defined")) {
+      if (e.msg.contains("two factor")) {
         ViewUtil.showPopup2faInputViewDialog(context, (value) {
           code_2fa = value;
         }, () {
           doLogin();
         });
+      } else {
+        ToastUtil.showShortToast(e.msg);
       }
-      ToastUtil.showShortToast(e.msg);
     });
     baseActivityState.baseDialogController?.hide();
     showLoading = false;

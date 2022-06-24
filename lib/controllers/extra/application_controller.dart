@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:framework/base/bundle.dart';
 import 'package:framework/utils/device_util.dart';
 import 'package:framework/utils/network/method.dart';
 import 'package:framework/utils/shared_preferences_manager.dart';
@@ -133,6 +134,13 @@ class ApplicationController extends ChangeNotifier {
       ToastUtil.showShortToast(e.msg);
     });
     return transfers;
+  }
+
+  void enterWebViewActivity(BuildContext context, String? title,String? url) {
+    Bundle bundle=Bundle();
+    bundle.putString(KeyConfig.title_key, title??"");
+    bundle.putString(KeyConfig.web_view_url_key, url??"");
+    NavigatorUtil.jumpTo(context, ActivityName.WebViewActivity,bundle: bundle);
   }
 
   @override

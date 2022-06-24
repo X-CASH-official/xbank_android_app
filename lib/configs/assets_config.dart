@@ -16,4 +16,6 @@ class AssetImageConfig {
   static const String user_avatar = "assets/images/user_avatar.png";
   static const String xcash_logo = "assets/images/xcash_logo.png";
   static const String transfer = "assets/images/transfer.png";
+  static const String webview_close = "assets/images/webview_close.png";
+  static const String webview_refresh = "assets/images/webview_refresh.png";
 }

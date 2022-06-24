@@ -137,14 +137,14 @@ class TransferDetailsActivityState
           ])
         : Container();
     return Container(
-        child: contentView,
-        decoration: BoxDecoration(
-          color: SColors.main_help,
-          borderRadius: BorderRadius.all(
-            Radius.circular(Dimens.radius_normal),
-          ),
+      child: contentView,
+      decoration: BoxDecoration(
+        color: SColors.main_help,
+        borderRadius: BorderRadius.all(
+          Radius.circular(Dimens.radius_normal),
         ),
-        padding: EdgeInsets.symmetric(horizontal:Dimens.margin_normal),
-      );
+      ),
+      padding: EdgeInsets.symmetric(horizontal: Dimens.margin_normal),
+    );
   }
 }

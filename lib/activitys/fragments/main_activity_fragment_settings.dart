@@ -207,7 +207,12 @@ class MainActivityFragmentSettingsState
       ],
     );
     return Container(
-      child: contentView,
+      child: GestureDetector(
+          child: contentView,
+          onTap: () {
+            _controller.enterAboutUs();
+          },
+          behavior: HitTestBehavior.translucent),
       padding: EdgeInsets.symmetric(
           horizontal: Dimens.margin_normal, vertical: Dimens.margin_normal),
       decoration: BoxDecoration(

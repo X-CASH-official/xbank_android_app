@@ -126,7 +126,7 @@ class ViewUtil {
     double viewWidth = maxWidth * 0.8;
     double marginLeft = maxWidth * 0.1;
     Widget contentView = NormalPopupView(
-      background:SColors.popup_background,
+      background: SColors.popup_background,
       left: marginLeft,
       top: 0,
       bottom: 0,
@@ -148,10 +148,11 @@ class ViewUtil {
     );
   }
 
-  static void showPopupTransferConfirmViewDialog<T>(BuildContext context,Transfer transfer,VoidCallback? onSubmitClick,
+  static void showPopupTransferConfirmViewDialog<T>(
+      BuildContext context, Transfer transfer, VoidCallback? onSubmitClick,
       {BoxDecoration? decoration,
-        Color background = Colors.white,
-        bool releaseFocus = true}) {
+      Color background = Colors.white,
+      bool releaseFocus = true}) {
     if (releaseFocus) {
       KeyBoardUtil.hideKeyboard(context);
     }
@@ -159,7 +160,7 @@ class ViewUtil {
     double viewWidth = maxWidth * 0.8;
     double marginLeft = maxWidth * 0.1;
     Widget contentView = NormalPopupView(
-      background:SColors.popup_background,
+      background: SColors.popup_background,
       left: marginLeft,
       top: 0,
       bottom: 0,
@@ -167,8 +168,10 @@ class ViewUtil {
         width: viewWidth,
         child: PopupTransferView(
             transfer: transfer,
-            onSubmitClick:onSubmitClick
-        ),
+            onSubmitClick: () {
+              NavigatorUtil.pop(context, NavigatorResultType.SUCCESS);
+              onSubmitClick?.call();
+            }),
       ),
     );
     Navigator.push(

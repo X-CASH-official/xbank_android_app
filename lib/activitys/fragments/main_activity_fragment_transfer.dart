@@ -29,12 +29,14 @@ class MainActivityFragmentTransfer extends NewBaseFragment {
 }
 
 class MainActivityFragmentTransferState
-    extends NewBaseFragmentState<MainActivityFragmentTransfer> {
+    extends NewBaseFragmentState<MainActivityFragmentTransfer> with TickerProviderStateMixin{
   MainActivityFragmentTransferController _controller =
       MainActivityFragmentTransferController();
 
   @override
   BaseController initController() {
+    _controller.animationController =
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
     return _controller;
   }
 
@@ -254,15 +256,19 @@ class MainActivityFragmentTransferState
         Expanded(
           child: GestureDetector(
               onTap: () {
-                _controller.initData();
+                _controller.doRefresh();
               },
               behavior: HitTestBehavior.translucent,
               child: Column(
                 children: [
-                  NormalImageView(
-                    width: Dimens.font_max_broad,
-                    assetUrl: AssetImageConfig.synchronize,
-                    color: SColors.primary,
+                  RotationTransition(
+                    alignment:Alignment.center,
+                    turns: _controller.animationController!,
+                    child:  NormalImageView(
+                      width: Dimens.font_max_broad,
+                      assetUrl: AssetImageConfig.synchronize,
+                      color: SColors.primary,
+                    ),
                   ),
                   DimenBoxs.vBoxSuperNarrow,
                   NormalTextView(

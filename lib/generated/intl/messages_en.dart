@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL BALANCE"),
         "main_activity_fragment_settings_about_text":
             MessageLookupByLibrary.simpleMessage("About X-Bank"),
+        "main_activity_fragment_settings_about_us_url":
+            MessageLookupByLibrary.simpleMessage("https://x-bank.io"),
         "main_activity_fragment_settings_account_title":
             MessageLookupByLibrary.simpleMessage("ACCOUNT"),
         "main_activity_fragment_settings_log_out_text":
@@ -97,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Refresh"),
         "main_activity_fragment_transfer_send_text":
             MessageLookupByLibrary.simpleMessage("Send"),
+        "main_activity_fragment_transfer_transfer_success_tips":
+            MessageLookupByLibrary.simpleMessage("Transfer success"),
         "main_activity_tab_deposit":
             MessageLookupByLibrary.simpleMessage("Deposit"),
         "main_activity_tab_home":

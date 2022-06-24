@@ -114,7 +114,9 @@ class NetworkUtil {
                     .contains(UrlConfig.users_sign_in))) {
           await decodeMessage(response, errorCode, error);
         } else {
-          bool isDecode = false;
+         String?  message= await decodeMessage(response, errorCode, null);
+
+          bool tokenError = true;
           if (response != null) {
             List<String> strs = response.realUri
                 .toString()
@@ -123,15 +125,32 @@ class NetworkUtil {
             if (strs.length >= 3 &&
                 strs[0] == "users" &&
                 strs[2] == "account") {
-              isDecode = true;
-              await decodeMessage(response, errorCode, error);
+              if(message!=null&&!message.contains("invalid")){
+                tokenError = false;
+              }
+            } else if (strs.length == 5 &&
+                strs[0] == "users" &&
+                strs[2] == "accounts" &&
+                strs[4] == "transfers") {
+              if(message!=null&&!message.contains("invalid")){
+                tokenError = false;
+              }
             }
           }
-          if (!isDecode) {
+          if (tokenError) {
             await error(ErrorEntity(code: errorCode, msg: ""));
             ApplicationController.getInstance().loginOut(
                 AppConfig.navigatorStateKey.currentContext!,
                 showTokenTips: true);
+          }else{
+            if (error != null) {
+              await error(
+                ErrorEntity(
+                  code: errorCode,
+                  msg: message?.toString() ?? "",
+                ),
+              );
+            }
           }
         }
         break;
@@ -147,11 +166,8 @@ class NetworkUtil {
     }
   }
 
-  static Future<void> decodeMessage(
+  static Future<String?> decodeMessage(
       Response? response, int errorCode, ErrorCallback? error) async {
-    if (error == null) {
-      return;
-    }
     dynamic data;
     if (response != null) {
       String contentType =
@@ -168,11 +184,14 @@ class NetworkUtil {
         data["error"]["message"] != null) {
       message = data["error"]["message"];
     }
-    await error(
-      ErrorEntity(
-        code: errorCode,
-        msg: message?.toString() ?? "",
-      ),
-    );
+    if (error != null) {
+      await error(
+        ErrorEntity(
+          code: errorCode,
+          msg: message?.toString() ?? "",
+        ),
+      );
+    }
+    return message;
   }
 }

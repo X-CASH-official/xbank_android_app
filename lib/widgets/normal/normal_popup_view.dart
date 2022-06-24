@@ -47,7 +47,7 @@ class NormalPopupView extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          color:background,
+          color: background,
         ),
         Positioned(
             child: GestureDetector(

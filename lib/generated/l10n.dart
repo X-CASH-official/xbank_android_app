@@ -570,6 +570,16 @@ class S {
     );
   }
 
+  /// `Transfer success`
+  String get main_activity_fragment_transfer_transfer_success_tips {
+    return Intl.message(
+      'Transfer success',
+      name: 'main_activity_fragment_transfer_transfer_success_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `TOTAL BALANCE`
   String get main_activity_fragment_home_balance_title {
     return Intl.message(
@@ -635,6 +645,16 @@ class S {
     return Intl.message(
       'Log Out',
       name: 'main_activity_fragment_settings_log_out_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `https://x-bank.io`
+  String get main_activity_fragment_settings_about_us_url {
+    return Intl.message(
+      'https://x-bank.io',
+      name: 'main_activity_fragment_settings_about_us_url',
       desc: '',
       args: [],
     );

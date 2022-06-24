@@ -6,11 +6,7 @@ import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/resources/dimens.dart';
 import 'package:x_bank/resources/s_colors.dart';
-import 'package:x_bank/utils/string_util.dart';
 import 'package:x_bank/widgets/normal/normal_button_view.dart';
-import 'package:x_bank/widgets/normal/normal_text_view.dart';
-
-import 'normal_loading_input_view.dart';
 
 class PopupTransferView extends StatelessWidget {
   Transfer transfer;
@@ -21,7 +17,7 @@ class PopupTransferView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildContentView(),
