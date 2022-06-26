@@ -87,9 +87,9 @@ class RegisterActivityController extends BaseController {
         Method.POST, UrlConfig.users_sign_up, data: data, showLog: true,
         successCallback: (data, baseEntity) async {
       if (data != null) {
-        LogUtil.e(data);
         ToastUtil.showShortToast(
             AppConfig.appS.register_activity_register_success_tips);
+        jumpToLoginActivity();
       } else {
         ToastUtil.showShortToast(AppConfig.appS.server_error);
       }
