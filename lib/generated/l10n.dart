@@ -150,6 +150,16 @@ class S {
     );
   }
 
+  /// `Copy success`
+  String get copy_success {
+    return Intl.message(
+      'Copy success',
+      name: 'copy_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `USD`
   String get usd_unit_text {
     return Intl.message(
@@ -410,10 +420,10 @@ class S {
     );
   }
 
-  /// `XCASH address(must be 98 char)`
+  /// `XCASH address`
   String get main_activity_fragment_transfer_recipient_address_hint {
     return Intl.message(
-      'XCASH address(must be 98 char)',
+      'XCASH address',
       name: 'main_activity_fragment_transfer_recipient_address_hint',
       desc: '',
       args: [],

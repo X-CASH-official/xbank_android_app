@@ -112,11 +112,10 @@ class MainActivityFragmentSettingsState
     Widget contentView = Row(
       children: [
         NormalImageView(
-          margin: EdgeInsets.all(Dimens.margin_normal),
           width: Dimens.main_activity_fragment_settings_user_avatar_width,
           assetUrl: AssetImageConfig.user_avatar,
         ),
-        DimenBoxs.hBoxNormal,
+        DimenBoxs.hBoxBroad,
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,21 +125,26 @@ class MainActivityFragmentSettingsState
                   color: SColors.text_title,
                   fontSize: Dimens.font_broad),
               DimenBoxs.vBoxSuperNarrow,
-              NormalTextView(
-                  content: _controller.getUserName(),
-                  color: SColors.text_hint,
-                  fontSize: Dimens.font_broad),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                child: NormalTextView(
+                    content: _controller.getUserId(),
+                    color: SColors.text_hint,
+                    fontSize: Dimens.font_narrow),
+                onTap: () {
+                  _controller.copyId();
+                },
+              ),
             ],
           ),
           flex: 1,
         ),
-        NormalIconView(
-          iconData: Icons.arrow_forward_ios_sharp,
-          fontSize: Dimens.font_broad,
-          padding: EdgeInsets.all(Dimens.margin_normal),
-          color: SColors.text_hint,
-          icon: -1,
-        ),
+        // NormalIconView(
+        //   iconData: Icons.arrow_forward_ios_sharp,
+        //   fontSize: Dimens.font_broad,
+        //   color: SColors.text_hint,
+        //   icon: -1,
+        // ),
       ],
     );
     return Container(

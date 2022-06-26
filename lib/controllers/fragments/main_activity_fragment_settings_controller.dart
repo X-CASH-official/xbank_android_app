@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:framework/base/bundle.dart';
 import 'package:framework/base/controllers/base_controller.dart';
+import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/models/account.dart';
 import 'package:x_bank/models/user_info.dart';
+import 'package:x_bank/utils/clipboard_util.dart';
 import 'package:x_bank/utils/navigator_util.dart';
 
 import '../extra/application_controller.dart';
@@ -37,11 +39,16 @@ class MainActivityFragmentSettingsController extends BaseController {
     return userInfo!.username ?? "";
   }
 
-  String getUserName() {
+  String getUserId() {
     if (userInfo == null) {
       return "";
     }
-    return userInfo!.username ?? "";
+    return userInfo!.user_id ?? "";
+  }
+
+  void copyId(){
+    ClipboardUtil.setData(getUserId());
+    ToastUtil.showShortToast(AppConfig.appS.copy_success);
   }
 
   void loginOut() {

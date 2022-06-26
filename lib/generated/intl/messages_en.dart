@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change password"),
         "change_password_activity_update_password_success_tips":
             MessageLookupByLibrary.simpleMessage("Update password success"),
+        "copy_success": MessageLookupByLibrary.simpleMessage("Copy success"),
         "exit_tips":
             MessageLookupByLibrary.simpleMessage("Click again to exit"),
         "input_2FA_code_hint":
@@ -114,8 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "main_activity_fragment_transfer_payment_id_title":
             MessageLookupByLibrary.simpleMessage("PAYMENT ID(OPTIONAL)"),
         "main_activity_fragment_transfer_recipient_address_hint":
-            MessageLookupByLibrary.simpleMessage(
-                "XCASH address(must be 98 char)"),
+            MessageLookupByLibrary.simpleMessage("XCASH address"),
         "main_activity_fragment_transfer_recipient_address_title":
             MessageLookupByLibrary.simpleMessage("RECIPIENT ADDRESS"),
         "main_activity_fragment_transfer_refresh_text":
