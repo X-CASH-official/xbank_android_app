@@ -263,7 +263,7 @@ class MainActivityFragmentTransferState
                 children: [
                   RotationTransition(
                     alignment:Alignment.center,
-                    turns: _controller.animationController!,
+                    turns: _controller.animationController,
                     child:  NormalImageView(
                       width: Dimens.font_max_broad,
                       assetUrl: AssetImageConfig.synchronize,

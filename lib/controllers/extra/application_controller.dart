@@ -138,7 +138,7 @@ class ApplicationController extends ChangeNotifier {
 
   void enterWebViewActivity(BuildContext context, String? title,String? url) {
     Bundle bundle=Bundle();
-    bundle.putString(KeyConfig.title_key, title??"");
+    bundle.putString(KeyConfig.web_view_title_key, title??"");
     bundle.putString(KeyConfig.web_view_url_key, url??"");
     NavigatorUtil.jumpTo(context, ActivityName.WebViewActivity,bundle: bundle);
   }

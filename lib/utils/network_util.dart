@@ -115,7 +115,6 @@ class NetworkUtil {
           await decodeMessage(response, errorCode, error);
         } else {
          String?  message= await decodeMessage(response, errorCode, null);
-
           bool tokenError = true;
           if (response != null) {
             List<String> strs = response.realUri
@@ -128,7 +127,7 @@ class NetworkUtil {
               if(message!=null&&!message.contains("invalid")){
                 tokenError = false;
               }
-            } else if (strs.length == 5 &&
+            } else if (strs.length >= 5 &&
                 strs[0] == "users" &&
                 strs[2] == "accounts" &&
                 strs[4] == "transfers") {
