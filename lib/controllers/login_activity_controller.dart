@@ -87,7 +87,7 @@ class LoginActivityController extends BaseController {
   }
 
   void jumpToMainActivity() async {
-    NavigatorUtil.jumpTo(context, ActivityName.MainActivity);
+    NavigatorUtil.clearTo(context, ActivityName.MainActivity);
   }
 
   void jumpToRegisterActivity() async {

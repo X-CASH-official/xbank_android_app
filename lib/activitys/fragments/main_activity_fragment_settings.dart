@@ -26,7 +26,7 @@ class MainActivityFragmentSettings extends NewBaseFragment {
 class MainActivityFragmentSettingsState
     extends NewBaseFragmentState<MainActivityFragmentSettings> {
   MainActivityFragmentSettingsController _controller =
-      MainActivityFragmentSettingsController();
+  MainActivityFragmentSettingsController();
 
   @override
   BaseController initController() {
@@ -69,7 +69,7 @@ class MainActivityFragmentSettingsState
         NormalTextView(
             margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
             content:
-                AppConfig.appS.main_activity_fragment_settings_account_title,
+            AppConfig.appS.main_activity_fragment_settings_account_title,
             color: SColors.text_content,
             fontSize: Dimens.font_normal),
         _buildContentView()
@@ -90,7 +90,7 @@ class MainActivityFragmentSettingsState
         NormalTextView(
             margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
             content:
-                AppConfig.appS.main_activity_fragment_settings_password_title,
+            AppConfig.appS.main_activity_fragment_settings_password_title,
             color: SColors.text_content,
             fontSize: Dimens.font_normal),
         _buildPasswordView(),
@@ -98,7 +98,7 @@ class MainActivityFragmentSettingsState
         NormalTextView(
             margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
             content:
-                AppConfig.appS.main_activity_fragment_settings_privacy_title,
+            AppConfig.appS.main_activity_fragment_settings_privacy_title,
             color: SColors.text_content,
             fontSize: Dimens.font_normal),
         _buildPrivacyView(),
@@ -125,16 +125,10 @@ class MainActivityFragmentSettingsState
                   color: SColors.text_title,
                   fontSize: Dimens.font_broad),
               DimenBoxs.vBoxSuperNarrow,
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                child: NormalTextView(
-                    content: _controller.getUserId(),
-                    color: SColors.text_hint,
-                    fontSize: Dimens.font_narrow),
-                onTap: () {
-                  _controller.copyId();
-                },
-              ),
+              NormalTextView(
+                  content: _controller.getUserId(),
+                  color: SColors.text_hint,
+                  fontSize: Dimens.font_narrow),
             ],
           ),
           flex: 1,
@@ -148,14 +142,20 @@ class MainActivityFragmentSettingsState
       ],
     );
     return Container(
-      child: contentView,
-      padding: EdgeInsets.all(Dimens.margin_normal),
-      decoration: BoxDecoration(
-        color: SColors.main_help,
-        borderRadius: BorderRadius.all(
-          Radius.circular(Dimens.radius_normal),
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          child: contentView,
+          onTap: () {
+            _controller.copyId();
+          },
         ),
-      ),
+        padding: EdgeInsets.all(Dimens.margin_normal),
+    decoration: BoxDecoration(
+    color: SColors.main_help,
+    borderRadius: BorderRadius.all(
+    Radius.circular(Dimens.radius_normal),
+    ),
+    ),
     );
   }
 
@@ -165,7 +165,7 @@ class MainActivityFragmentSettingsState
         Expanded(
           child: NormalTextView(
               content:
-                  AppConfig.appS.main_activity_fragment_settings_password_text,
+              AppConfig.appS.main_activity_fragment_settings_password_text,
               color: SColors.text_title,
               fontSize: Dimens.font_broad),
           flex: 1,
@@ -202,7 +202,7 @@ class MainActivityFragmentSettingsState
         Expanded(
           child: NormalTextView(
               content:
-                  AppConfig.appS.main_activity_fragment_settings_about_text,
+              AppConfig.appS.main_activity_fragment_settings_about_text,
               color: SColors.text_hint,
               fontSize: Dimens.font_broad),
           flex: 1,
@@ -241,7 +241,7 @@ class MainActivityFragmentSettingsState
             behavior: HitTestBehavior.translucent,
             child: NormalTextView(
                 content:
-                    AppConfig.appS.main_activity_fragment_settings_log_out_text,
+                AppConfig.appS.main_activity_fragment_settings_log_out_text,
                 color: SColors.log_out,
                 fontSize: Dimens.font_broad),
             onTap: () {
