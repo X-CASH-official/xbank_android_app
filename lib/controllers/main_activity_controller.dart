@@ -14,6 +14,8 @@ import 'package:x_bank/models/extra/tab_item.dart';
 import 'package:x_bank/resources/s_colors.dart';
 
 import 'extra/application_controller.dart';
+import 'fragments/main_activity_fragment_home_controller.dart';
+import 'fragments/main_activity_fragment_transfer_controller.dart';
 
 class MainActivityController extends BaseController {
   late ApplicationController applicationController;
@@ -59,6 +61,24 @@ class MainActivityController extends BaseController {
   void updateIndex(int index) {
     currentIndex = index;
     notifyListeners();
+  }
+
+  void refresh() {
+    if (fragments.length < 4) {
+      return;
+    }
+    ((fragments[0] as MainActivityFragmentHome)
+        .stateCache
+        .state
+        ?.baseController
+    as MainActivityFragmentHomeController)
+        .initData();
+    ((fragments[2] as MainActivityFragmentTransfer)
+        .stateCache
+        .state
+        ?.baseController
+    as MainActivityFragmentTransferController)
+        .initData();
   }
 
   Future<bool> exitApp() async {

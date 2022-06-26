@@ -29,7 +29,8 @@ class MainActivityFragmentTransfer extends NewBaseFragment {
 }
 
 class MainActivityFragmentTransferState
-    extends NewBaseFragmentState<MainActivityFragmentTransfer> with TickerProviderStateMixin{
+    extends NewBaseFragmentState<MainActivityFragmentTransfer>
+    with TickerProviderStateMixin {
   MainActivityFragmentTransferController _controller =
       MainActivityFragmentTransferController();
 
@@ -262,9 +263,9 @@ class MainActivityFragmentTransferState
               child: Column(
                 children: [
                   RotationTransition(
-                    alignment:Alignment.center,
+                    alignment: Alignment.center,
                     turns: _controller.animationController,
-                    child:  NormalImageView(
+                    child: NormalImageView(
                       width: Dimens.font_max_broad,
                       assetUrl: AssetImageConfig.synchronize,
                       color: SColors.primary,

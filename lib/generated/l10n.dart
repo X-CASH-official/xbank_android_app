@@ -819,6 +819,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Old password:`
+  String get change_password_activity_old_password_text {
+    return Intl.message(
+      'Old password:',
+      name: 'change_password_activity_old_password_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input old password`
+  String get change_password_activity_old_password_hint {
+    return Intl.message(
+      'Please input old password',
+      name: 'change_password_activity_old_password_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password`
+  String get change_password_activity_title {
+    return Intl.message(
+      'Change password',
+      name: 'change_password_activity_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password:`
+  String get change_password_activity_password_text {
+    return Intl.message(
+      'Password:',
+      name: 'change_password_activity_password_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input password`
+  String get change_password_activity_password_hint {
+    return Intl.message(
+      'Please input password',
+      name: 'change_password_activity_password_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password:`
+  String get change_password_activity_confirm_password_text {
+    return Intl.message(
+      'Confirm password:',
+      name: 'change_password_activity_confirm_password_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input password again`
+  String get change_password_activity_confirm_password_hint {
+    return Intl.message(
+      'Please input password again',
+      name: 'change_password_activity_confirm_password_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Old password and password can\'t empty`
+  String get change_password_activity_password_empty_tips {
+    return Intl.message(
+      'Old password and password can\\\'t empty',
+      name: 'change_password_activity_password_empty_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update password success`
+  String get change_password_activity_update_password_success_tips {
+    return Intl.message(
+      'Update password success',
+      name: 'change_password_activity_update_password_success_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password not same`
+  String get change_password_activity_password_not_same_tips {
+    return Intl.message(
+      'Password not same',
+      name: 'change_password_activity_password_not_same_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Commit`
+  String get change_password_activity_commit_text {
+    return Intl.message(
+      'Commit',
+      name: 'change_password_activity_commit_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

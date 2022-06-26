@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:framework/base/activity_manager.dart';
 import 'package:framework/base/bundle.dart';
 import 'package:framework/base/controllers/base_controller.dart';
 import 'package:framework/utils/network/method.dart';
 import 'package:framework/utils/toast_util.dart';
+import 'package:x_bank/activitys/main_activity.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/key_config.dart';
 import 'package:x_bank/configs/router_config.dart';
@@ -18,6 +20,7 @@ import 'package:x_bank/utils/view_util.dart';
 import 'package:x_bank/widgets/pull_refresh_view.dart';
 
 import '../extra/application_controller.dart';
+import '../main_activity_controller.dart';
 
 class MainActivityFragmentTransferController extends BaseController {
   PullRefreshController pullRefreshController =
@@ -42,7 +45,6 @@ class MainActivityFragmentTransferController extends BaseController {
     });
   }
 
-
   void openNewTransfer() {
     isTransfer = true;
     notifyListeners();
@@ -58,7 +60,7 @@ class MainActivityFragmentTransferController extends BaseController {
     await getTransfers(true);
   }
 
-  Future<void> doRefresh() async{
+  Future<void> doRefresh() async {
     animationController.reset();
     animationController.forward();
     await initData();
@@ -182,7 +184,7 @@ class MainActivityFragmentTransferController extends BaseController {
       ToastUtil.showShortToast(
           AppConfig.appS.main_activity_fragment_transfer_transfer_success_tips);
       isTransfer = false;
-      await initData();
+      await updateTransfers();
     }, errorCallback: (e) async {
       code_2fa = null;
       if (e.msg.contains("two factor")) {
@@ -196,6 +198,10 @@ class MainActivityFragmentTransferController extends BaseController {
       }
     });
     baseActivityState.baseDialogController?.hide();
+  }
+
+  Future<void> updateTransfers() async{
+    (ActivityManager().getTargetActivity<MainActivityState>()?.baseController as MainActivityController).refresh();
   }
 
   void jumpToTransferDetailsActivity(Transfer transfer) async {

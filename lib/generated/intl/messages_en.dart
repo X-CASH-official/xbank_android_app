@@ -25,6 +25,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "change_password_activity_commit_text":
+            MessageLookupByLibrary.simpleMessage("Commit"),
+        "change_password_activity_confirm_password_hint":
+            MessageLookupByLibrary.simpleMessage("Please input password again"),
+        "change_password_activity_confirm_password_text":
+            MessageLookupByLibrary.simpleMessage("Confirm password:"),
+        "change_password_activity_old_password_hint":
+            MessageLookupByLibrary.simpleMessage("Please input old password"),
+        "change_password_activity_old_password_text":
+            MessageLookupByLibrary.simpleMessage("Old password:"),
+        "change_password_activity_password_empty_tips":
+            MessageLookupByLibrary.simpleMessage(
+                "Old password and password can\\\'t empty"),
+        "change_password_activity_password_hint":
+            MessageLookupByLibrary.simpleMessage("Please input password"),
+        "change_password_activity_password_not_same_tips":
+            MessageLookupByLibrary.simpleMessage("Password not same"),
+        "change_password_activity_password_text":
+            MessageLookupByLibrary.simpleMessage("Password:"),
+        "change_password_activity_title":
+            MessageLookupByLibrary.simpleMessage("Change password"),
+        "change_password_activity_update_password_success_tips":
+            MessageLookupByLibrary.simpleMessage("Update password success"),
         "exit_tips":
             MessageLookupByLibrary.simpleMessage("Click again to exit"),
         "input_2FA_code_hint":

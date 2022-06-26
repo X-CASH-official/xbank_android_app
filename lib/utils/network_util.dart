@@ -109,12 +109,13 @@ class NetworkUtil {
       case 401:
         if (response != null &&
             (response.realUri.toString().contains(UrlConfig.users_sign_up) ||
+                response.realUri.toString().contains(UrlConfig.users_sign_in) ||
                 response.realUri
                     .toString()
-                    .contains(UrlConfig.users_sign_in))) {
+                    .contains(UrlConfig.users_password))) {
           await decodeMessage(response, errorCode, error);
         } else {
-         String?  message= await decodeMessage(response, errorCode, null);
+          String? message = await decodeMessage(response, errorCode, null);
           bool tokenError = true;
           if (response != null) {
             List<String> strs = response.realUri
@@ -124,14 +125,14 @@ class NetworkUtil {
             if (strs.length >= 3 &&
                 strs[0] == "users" &&
                 strs[2] == "account") {
-              if(message!=null&&!message.contains("invalid")){
+              if (message != null && !message.contains("invalid")) {
                 tokenError = false;
               }
             } else if (strs.length >= 5 &&
                 strs[0] == "users" &&
                 strs[2] == "accounts" &&
                 strs[4] == "transfers") {
-              if(message!=null&&!message.contains("invalid")){
+              if (message != null && !message.contains("invalid")) {
                 tokenError = false;
               }
             }
@@ -141,7 +142,7 @@ class NetworkUtil {
             ApplicationController.getInstance().loginOut(
                 AppConfig.navigatorStateKey.currentContext!,
                 showTokenTips: true);
-          }else{
+          } else {
             if (error != null) {
               await error(
                 ErrorEntity(

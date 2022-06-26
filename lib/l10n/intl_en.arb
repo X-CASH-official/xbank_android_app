@@ -75,5 +75,16 @@
   "transfer_details_activity_transfer_amount_usd_text": "Amount usd:",
   "transfer_details_activity_transfer_status_text": "Status:",
   "transfer_details_activity_transfer_payment_id_text": "Payment id:",
-  "transfer_details_activity_transfer_payment_time_text": "Time:"
+  "transfer_details_activity_transfer_payment_time_text": "Time:",
+  "change_password_activity_old_password_text": "Old password:",
+  "change_password_activity_old_password_hint": "Please input old password",
+  "change_password_activity_title": "Change password",
+  "change_password_activity_password_text": "Password:",
+  "change_password_activity_password_hint": "Please input password",
+  "change_password_activity_confirm_password_text": "Confirm password:",
+  "change_password_activity_confirm_password_hint": "Please input password again",
+  "change_password_activity_password_empty_tips": "Old password and password can\\'t empty",
+  "change_password_activity_update_password_success_tips": "Update password success",
+  "change_password_activity_password_not_same_tips": "Password not same",
+  "change_password_activity_commit_text": "Commit"
 }

@@ -94,7 +94,7 @@ class MainActivityFragmentSettingsState
             color: SColors.text_content,
             fontSize: Dimens.font_normal),
         _buildPasswordView(),
-        DimenBoxs.vBoxSuperBroad,
+        DimenBoxs.vBoxBroad,
         NormalTextView(
             margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
             content:
@@ -102,7 +102,7 @@ class MainActivityFragmentSettingsState
             color: SColors.text_content,
             fontSize: Dimens.font_normal),
         _buildPrivacyView(),
-        DimenBoxs.vBoxSuperBroad,
+        DimenBoxs.vBoxBroad,
         _buildLogOutView()
       ],
     );
@@ -175,7 +175,12 @@ class MainActivityFragmentSettingsState
       ],
     );
     return Container(
-      child: contentView,
+      child: GestureDetector(
+          child: contentView,
+          onTap: () {
+            _controller.jumpToChangePasswordActivity();
+          },
+          behavior: HitTestBehavior.translucent),
       padding: EdgeInsets.symmetric(
           horizontal: Dimens.margin_normal, vertical: Dimens.margin_normal),
       decoration: BoxDecoration(
