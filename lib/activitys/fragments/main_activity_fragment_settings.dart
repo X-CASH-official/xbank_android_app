@@ -115,7 +115,7 @@ class MainActivityFragmentSettingsState
           width: Dimens.main_activity_fragment_settings_user_avatar_width,
           assetUrl: AssetImageConfig.user_avatar,
         ),
-        DimenBoxs.hBoxBroad,
+        DimenBoxs.hBoxNormal,
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,12 +139,12 @@ class MainActivityFragmentSettingsState
           ),
           flex: 1,
         ),
-        // NormalIconView(
-        //   iconData: Icons.arrow_forward_ios_sharp,
-        //   fontSize: Dimens.font_broad,
-        //   color: SColors.text_hint,
-        //   icon: -1,
-        // ),
+        NormalIconView(
+          iconData: Icons.arrow_forward_ios_sharp,
+          fontSize: Dimens.font_broad,
+          color: SColors.text_hint,
+          icon: -1,
+        ),
       ],
     );
     return Container(

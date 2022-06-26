@@ -193,7 +193,7 @@ class Dimens {
   }
 
   static double get main_activity_fragment_settings_user_avatar_width {
-    return ScreenUtil.getSize(60);
+    return ScreenUtil.getSize(55);
   }
 
   static double get webview_menu_icon_width {

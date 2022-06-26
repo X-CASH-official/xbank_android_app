@@ -103,7 +103,7 @@ class MainActivityFragmentHomeState
               NormalTextView(
                   content: (_controller.usersAccountsBalanceSummaryResponseData
                               ?.xcash_balance ??
-                          " ") +
+                          "0") +" "+
                       AppConfig.appS.xcash_unit_text,
                   color: SColors.text_title,
                   fontSize: Dimens.font_broad),
@@ -111,7 +111,7 @@ class MainActivityFragmentHomeState
               NormalTextView(
                   content: (_controller.usersAccountsBalanceSummaryResponseData
                               ?.usd_balance ??
-                          " ") +
+                          "0") +" "+
                       AppConfig.appS.usd_unit_text,
                   color: SColors.text_hint,
                   fontSize: Dimens.font_broad),

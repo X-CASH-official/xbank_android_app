@@ -115,7 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "main_activity_fragment_transfer_payment_id_title":
             MessageLookupByLibrary.simpleMessage("PAYMENT ID(OPTIONAL)"),
         "main_activity_fragment_transfer_recipient_address_hint":
-            MessageLookupByLibrary.simpleMessage("XCASH address"),
+            MessageLookupByLibrary.simpleMessage(
+                "XCASH address(must be 98 char)"),
         "main_activity_fragment_transfer_recipient_address_title":
             MessageLookupByLibrary.simpleMessage("RECIPIENT ADDRESS"),
         "main_activity_fragment_transfer_refresh_text":

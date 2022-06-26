@@ -420,10 +420,10 @@ class S {
     );
   }
 
-  /// `XCASH address`
+  /// `XCASH address(must be 98 char)`
   String get main_activity_fragment_transfer_recipient_address_hint {
     return Intl.message(
-      'XCASH address',
+      'XCASH address(must be 98 char)',
       name: 'main_activity_fragment_transfer_recipient_address_hint',
       desc: '',
       args: [],

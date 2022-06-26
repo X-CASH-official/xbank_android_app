@@ -36,7 +36,7 @@
   "main_activity_tab_transfer": "Transfer",
   "main_activity_tab_settings": "Settings",
   "main_activity_fragment_transfer_recipient_address_title": "RECIPIENT ADDRESS",
-  "main_activity_fragment_transfer_recipient_address_hint": "XCASH address",
+  "main_activity_fragment_transfer_recipient_address_hint": "XCASH address(must be 98 char)",
   "main_activity_fragment_transfer_payment_id_title": "PAYMENT ID(OPTIONAL)",
   "main_activity_fragment_transfer_payment_id_hint": "Payment ID",
   "main_activity_fragment_transfer_amount_title": "AMOUNT",
