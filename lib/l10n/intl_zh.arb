@@ -16,7 +16,7 @@
   "login_activity_account_hint": "请输入账号",
   "login_activity_password_hint": "请输入密码",
   "login_activity_account_or_password_empty_tips": "账号和密码不能为空",
-  "login_activity_register_text": "我没有账号,我想要注册",
+  "login_activity_register_text": "我没有账号，我想要注册",
   "login_activity_login_2fa_title": "输入你的2FA验证码",
   "register_activity_register_title": "注册",
   "register_activity_register_text": "注册",

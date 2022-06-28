@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_activity_password_hint":
             MessageLookupByLibrary.simpleMessage("请输入密码"),
         "login_activity_register_text":
-            MessageLookupByLibrary.simpleMessage("我没有账号,我想要注册"),
+            MessageLookupByLibrary.simpleMessage("我没有账号，我想要注册"),
         "main_activity_fragment_deposit_address_tips":
             MessageLookupByLibrary.simpleMessage("要创建您的帐户，请将XCASH发送到以下地址"),
         "main_activity_fragment_deposit_address_title":
