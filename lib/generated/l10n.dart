@@ -790,10 +790,10 @@ class S {
     );
   }
 
-  /// `Amount usd:`
+  /// `Amount USD:`
   String get transfer_details_activity_transfer_amount_usd_text {
     return Intl.message(
-      'Amount usd:',
+      'Amount USD:',
       name: 'transfer_details_activity_transfer_amount_usd_text',
       desc: '',
       args: [],
@@ -947,6 +947,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 

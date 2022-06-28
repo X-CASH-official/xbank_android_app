@@ -171,7 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "transfer_details_activity_transfer_amount_text":
             MessageLookupByLibrary.simpleMessage("Amount:"),
         "transfer_details_activity_transfer_amount_usd_text":
-            MessageLookupByLibrary.simpleMessage("Amount usd:"),
+            MessageLookupByLibrary.simpleMessage("Amount USD:"),
         "transfer_details_activity_transfer_block_height_text":
             MessageLookupByLibrary.simpleMessage("Block height:"),
         "transfer_details_activity_transfer_fee_text":
