@@ -57,7 +57,8 @@
   "main_activity_fragment_settings_account_title": "ACCOUNT",
   "main_activity_fragment_settings_password_title": "PASSWORD",
   "main_activity_fragment_settings_password_text": "Change password",
-  "main_activity_fragment_settings_privacy_title": "PRIVACY",
+  "main_activity_fragment_settings_system_title": "SYSTEM",
+  "main_activity_fragment_settings_language_text": "Language",
   "main_activity_fragment_settings_about_text": "About X-Bank",
   "main_activity_fragment_settings_log_out_text": "Log Out",
   "main_activity_fragment_settings_about_us_url": "https://x-bank.io",
@@ -87,5 +88,8 @@
   "change_password_activity_password_empty_tips": "Old password and password can\\'t empty",
   "change_password_activity_update_password_success_tips": "Update password success",
   "change_password_activity_password_not_same_tips": "Password not same",
-  "change_password_activity_commit_text": "Commit"
+  "change_password_activity_commit_text": "Commit",
+  "change_language_activity_title": "Change language",
+  "change_language_activity_english_text": "ENGLISH",
+  "change_language_activity_chinese_text": "CHINESE"
 }

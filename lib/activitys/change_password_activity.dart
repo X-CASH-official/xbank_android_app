@@ -5,7 +5,6 @@ import 'package:x_bank/activitys/views/normal_loading_input_view.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/assets_config.dart';
 import 'package:x_bank/controllers/change_password_activity_controller.dart';
-import 'package:x_bank/controllers/login_activity_controller.dart';
 import 'package:x_bank/resources/dimens.dart';
 import 'package:x_bank/resources/s_colors.dart';
 import 'package:x_bank/widgets/normal/normal_button_view.dart';
@@ -63,13 +62,13 @@ class ChangePasswordActivityState
             DimenBoxs.vBoxSuperBroad,
             Container(
               margin: EdgeInsets.symmetric(horizontal: Dimens.margin_normal),
-              child: _buildLoginView(),
+              child: _buildContentView(),
             )
           ]),
     );
   }
 
-  Widget _buildLoginView() {
+  Widget _buildContentView() {
     return Column(mainAxisSize: MainAxisSize.min, children: [
       NormalTextView(
           alignment: Alignment.centerLeft,

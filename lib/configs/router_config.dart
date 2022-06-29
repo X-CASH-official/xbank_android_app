@@ -1,4 +1,5 @@
 import 'package:framework/utils/router_manager.dart';
+import 'package:x_bank/activitys/change_language_activity.dart';
 import 'package:x_bank/activitys/change_password_activity.dart';
 import 'package:x_bank/activitys/login_activity.dart';
 import 'package:x_bank/activitys/main_activity.dart';
@@ -6,7 +7,6 @@ import 'package:x_bank/activitys/register_activity.dart';
 import 'package:x_bank/activitys/splash_activity.dart';
 import 'package:x_bank/activitys/transfer_details_activity.dart';
 import 'package:x_bank/activitys/web_view_activity.dart';
-import 'package:x_bank/controllers/change_password_activity_controller.dart';
 
 enum ActivityName {
   SplashActivity,
@@ -15,7 +15,8 @@ enum ActivityName {
   RegisterActivity,
   TransferDetailsActivity,
   WebViewActivity,
-  ChangePasswordActivity
+  ChangePasswordActivity,
+  ChangeLanguageActivity
 }
 
 class RouterConfig {
@@ -34,5 +35,7 @@ class RouterConfig {
         ActivityBuilder(builderFunction: (bundle) => WebViewActivity(bundle)),
     ActivityName.ChangePasswordActivity: ActivityBuilder(
         builderFunction: (bundle) => ChangePasswordActivity(bundle)),
+    ActivityName.ChangeLanguageActivity: ActivityBuilder(
+        builderFunction: (bundle) => ChangeLanguageActivity(bundle)),
   };
 }

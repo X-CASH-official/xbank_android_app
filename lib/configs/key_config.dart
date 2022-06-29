@@ -13,4 +13,6 @@ class KeyConfig {
   static const String web_view_url_key = "web_view_url_key";
 
   static const String web_view_title_key = "web_view_title_key";
+
+  static const String language_key = "language_key";
 }

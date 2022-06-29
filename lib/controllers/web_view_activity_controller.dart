@@ -3,6 +3,7 @@ import 'package:framework/base/bundle.dart';
 import 'package:framework/base/controllers/base_controller.dart';
 import 'package:x_bank/configs/key_config.dart';
 import 'package:x_bank/widgets/js_bridge/js_bridge_view.dart';
+
 import 'extra/application_controller.dart';
 
 class WebViewActivityController extends BaseController {

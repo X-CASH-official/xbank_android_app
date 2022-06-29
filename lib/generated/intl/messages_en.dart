@@ -21,10 +21,17 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "change_language_activity_chinese_text":
+            MessageLookupByLibrary.simpleMessage("CHINESE"),
+        "change_language_activity_english_text":
+            MessageLookupByLibrary.simpleMessage("ENGLISH"),
+        "change_language_activity_title":
+            MessageLookupByLibrary.simpleMessage("Change language"),
         "change_password_activity_commit_text":
             MessageLookupByLibrary.simpleMessage("Commit"),
         "change_password_activity_confirm_password_hint":
@@ -89,14 +96,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("https://x-bank.io"),
         "main_activity_fragment_settings_account_title":
             MessageLookupByLibrary.simpleMessage("ACCOUNT"),
+        "main_activity_fragment_settings_language_text":
+            MessageLookupByLibrary.simpleMessage("Language"),
         "main_activity_fragment_settings_log_out_text":
             MessageLookupByLibrary.simpleMessage("Log Out"),
         "main_activity_fragment_settings_password_text":
             MessageLookupByLibrary.simpleMessage("Change password"),
         "main_activity_fragment_settings_password_title":
             MessageLookupByLibrary.simpleMessage("PASSWORD"),
-        "main_activity_fragment_settings_privacy_title":
-            MessageLookupByLibrary.simpleMessage("PRIVACY"),
+        "main_activity_fragment_settings_system_title":
+            MessageLookupByLibrary.simpleMessage("SYSTEM"),
         "main_activity_fragment_transfer_2fa_text":
             MessageLookupByLibrary.simpleMessage(
                 "To proceed with this transfer, please provide your 2FA code below"),

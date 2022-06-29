@@ -21,10 +21,17 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("返回"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "change_language_activity_chinese_text":
+            MessageLookupByLibrary.simpleMessage("中文"),
+        "change_language_activity_english_text":
+            MessageLookupByLibrary.simpleMessage("英文"),
+        "change_language_activity_title":
+            MessageLookupByLibrary.simpleMessage("修改语言"),
         "change_password_activity_commit_text":
             MessageLookupByLibrary.simpleMessage("提交"),
         "change_password_activity_confirm_password_hint":
@@ -83,14 +90,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("https://x-bank.io"),
         "main_activity_fragment_settings_account_title":
             MessageLookupByLibrary.simpleMessage("账号"),
+        "main_activity_fragment_settings_language_text":
+            MessageLookupByLibrary.simpleMessage("语言"),
         "main_activity_fragment_settings_log_out_text":
             MessageLookupByLibrary.simpleMessage("登出"),
         "main_activity_fragment_settings_password_text":
             MessageLookupByLibrary.simpleMessage("修改密码"),
         "main_activity_fragment_settings_password_title":
             MessageLookupByLibrary.simpleMessage("密码"),
-        "main_activity_fragment_settings_privacy_title":
-            MessageLookupByLibrary.simpleMessage("隐私"),
+        "main_activity_fragment_settings_system_title":
+            MessageLookupByLibrary.simpleMessage("系统"),
         "main_activity_fragment_transfer_2fa_text":
             MessageLookupByLibrary.simpleMessage("要继续此转账，请在下面提供您的2FA验证码"),
         "main_activity_fragment_transfer_address_empty_tips":

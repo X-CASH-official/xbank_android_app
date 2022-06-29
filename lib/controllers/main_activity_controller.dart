@@ -67,18 +67,26 @@ class MainActivityController extends BaseController {
     if (fragments.length < 4) {
       return;
     }
-    ((fragments[0] as MainActivityFragmentHome)
-        .stateCache
-        .state
-        ?.baseController
-    as MainActivityFragmentHomeController)
+    ((fragments[0] as MainActivityFragmentHome).stateCache.state?.baseController
+            as MainActivityFragmentHomeController)
         .initData();
     ((fragments[2] as MainActivityFragmentTransfer)
-        .stateCache
-        .state
-        ?.baseController
-    as MainActivityFragmentTransferController)
+            .stateCache
+            .state
+            ?.baseController as MainActivityFragmentTransferController)
         .initData();
+  }
+
+  void refreshFragments() {
+    //Called in MainActivityState, if call in the change language page, the state may be not found
+    fragments.forEach((item) {
+      (item.stateCache.state?.baseController)?.notifyListeners();
+    });
+  }
+
+  void updateLanguage() {
+    initTabs();
+    notifyListeners();
   }
 
   Future<bool> exitApp() async {

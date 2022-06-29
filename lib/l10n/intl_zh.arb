@@ -57,7 +57,8 @@
   "main_activity_fragment_settings_account_title": "账号",
   "main_activity_fragment_settings_password_title": "密码",
   "main_activity_fragment_settings_password_text": "修改密码",
-  "main_activity_fragment_settings_privacy_title": "隐私",
+  "main_activity_fragment_settings_system_title": "系统",
+  "main_activity_fragment_settings_language_text": "语言",
   "main_activity_fragment_settings_about_text": "关于X-Bank",
   "main_activity_fragment_settings_log_out_text": "登出",
   "main_activity_fragment_settings_about_us_url": "https://x-bank.io",
@@ -87,5 +88,8 @@
   "change_password_activity_password_empty_tips": "旧密码和新密码不能为空",
   "change_password_activity_update_password_success_tips": "密码修改成功",
   "change_password_activity_password_not_same_tips": "密码不相同",
-  "change_password_activity_commit_text": "提交"
+  "change_password_activity_commit_text": "提交",
+  "change_language_activity_title": "修改语言",
+  "change_language_activity_english_text": "英文",
+  "change_language_activity_chinese_text": "中文"
 }

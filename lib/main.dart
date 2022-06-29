@@ -10,6 +10,8 @@ import 'package:x_bank/resources/s_colors.dart';
 import 'activitys/splash_activity.dart';
 import 'configs/app_config.dart';
 import 'controllers/extra/application_controller.dart';
+import 'controllers/extra/locale_controller.dart';
+import 'controllers/extra/theme_controller.dart';
 import 'generated/l10n.dart';
 
 //flutter version 2.5.3
@@ -68,12 +70,38 @@ class MyAppState extends State<MyApp> {
       future: AppConfig.initBase(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.hasData) {
-          return ScreenUtil.buildScreenChangeRefreshWidget(
-              AnnotatedRegion<SystemUiOverlayStyle>(
-                  value: SystemUiOverlayStyle.dark, child: materialApp),
-              (bool isPortrait, double width, double height) {
-            setState(() {});
-          });
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (context) => ThemeController()),
+              ChangeNotifierProvider(create: (context) => LocaleController())
+            ],
+            child: Consumer2<ThemeController, LocaleController>(
+                builder: (context, themeController, localeController, child) {
+              MaterialApp materialApp = MaterialApp(
+                locale: localeController.getLocale(),
+                theme: ThemeData(
+                    primaryColor: SColors.primary,
+                    backgroundColor: SColors.main_help),
+                home: SplashActivity(),
+                debugShowCheckedModeBanner: false,
+                navigatorKey: AppConfig.navigatorStateKey,
+                onGenerateRoute: RouterManager().router.generator,
+                navigatorObservers: [RouterManager().routeRecorder],
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+              );
+              return ScreenUtil.buildScreenChangeRefreshWidget(
+                  AnnotatedRegion<SystemUiOverlayStyle>(
+                      value: SystemUiOverlayStyle.dark, child: materialApp),
+                  (bool isPortrait, double width, double height) {
+                setState(() {});
+              });
+            }),
+          );
         } else {
           return Container();
         }

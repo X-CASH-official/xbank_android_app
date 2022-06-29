@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -630,11 +631,21 @@ class S {
     );
   }
 
-  /// `PRIVACY`
-  String get main_activity_fragment_settings_privacy_title {
+  /// `SYSTEM`
+  String get main_activity_fragment_settings_system_title {
     return Intl.message(
-      'PRIVACY',
-      name: 'main_activity_fragment_settings_privacy_title',
+      'SYSTEM',
+      name: 'main_activity_fragment_settings_system_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get main_activity_fragment_settings_language_text {
+    return Intl.message(
+      'Language',
+      name: 'main_activity_fragment_settings_language_text',
       desc: '',
       args: [],
     );
@@ -939,6 +950,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Change language`
+  String get change_language_activity_title {
+    return Intl.message(
+      'Change language',
+      name: 'change_language_activity_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ENGLISH`
+  String get change_language_activity_english_text {
+    return Intl.message(
+      'ENGLISH',
+      name: 'change_language_activity_english_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CHINESE`
+  String get change_language_activity_chinese_text {
+    return Intl.message(
+      'CHINESE',
+      name: 'change_language_activity_chinese_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -953,8 +994,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

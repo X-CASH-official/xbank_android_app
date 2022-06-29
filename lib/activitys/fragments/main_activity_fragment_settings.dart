@@ -26,7 +26,7 @@ class MainActivityFragmentSettings extends NewBaseFragment {
 class MainActivityFragmentSettingsState
     extends NewBaseFragmentState<MainActivityFragmentSettings> {
   MainActivityFragmentSettingsController _controller =
-  MainActivityFragmentSettingsController();
+      MainActivityFragmentSettingsController();
 
   @override
   BaseController initController() {
@@ -69,7 +69,7 @@ class MainActivityFragmentSettingsState
         NormalTextView(
             margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
             content:
-            AppConfig.appS.main_activity_fragment_settings_account_title,
+                AppConfig.appS.main_activity_fragment_settings_account_title,
             color: SColors.text_content,
             fontSize: Dimens.font_normal),
         _buildContentView()
@@ -90,7 +90,7 @@ class MainActivityFragmentSettingsState
         NormalTextView(
             margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
             content:
-            AppConfig.appS.main_activity_fragment_settings_password_title,
+                AppConfig.appS.main_activity_fragment_settings_password_title,
             color: SColors.text_content,
             fontSize: Dimens.font_normal),
         _buildPasswordView(),
@@ -98,10 +98,12 @@ class MainActivityFragmentSettingsState
         NormalTextView(
             margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
             content:
-            AppConfig.appS.main_activity_fragment_settings_privacy_title,
+                AppConfig.appS.main_activity_fragment_settings_system_title,
             color: SColors.text_content,
             fontSize: Dimens.font_normal),
-        _buildPrivacyView(),
+        _buildSystemLanguageView(),
+        DimenBoxs.vBoxBroad,
+        _buildSystemAboutUsView(),
         DimenBoxs.vBoxBroad,
         _buildLogOutView()
       ],
@@ -142,20 +144,20 @@ class MainActivityFragmentSettingsState
       ],
     );
     return Container(
-        child: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          child: contentView,
-          onTap: () {
-            _controller.copyId();
-          },
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        child: contentView,
+        onTap: () {
+          _controller.copyId();
+        },
+      ),
+      padding: EdgeInsets.all(Dimens.margin_normal),
+      decoration: BoxDecoration(
+        color: SColors.main_help,
+        borderRadius: BorderRadius.all(
+          Radius.circular(Dimens.radius_normal),
         ),
-        padding: EdgeInsets.all(Dimens.margin_normal),
-    decoration: BoxDecoration(
-    color: SColors.main_help,
-    borderRadius: BorderRadius.all(
-    Radius.circular(Dimens.radius_normal),
-    ),
-    ),
+      ),
     );
   }
 
@@ -165,7 +167,7 @@ class MainActivityFragmentSettingsState
         Expanded(
           child: NormalTextView(
               content:
-              AppConfig.appS.main_activity_fragment_settings_password_text,
+                  AppConfig.appS.main_activity_fragment_settings_password_text,
               color: SColors.text_title,
               fontSize: Dimens.font_broad),
           flex: 1,
@@ -196,13 +198,50 @@ class MainActivityFragmentSettingsState
     );
   }
 
-  Widget _buildPrivacyView() {
+  Widget _buildSystemLanguageView() {
     Widget contentView = Row(
       children: [
         Expanded(
           child: NormalTextView(
               content:
-              AppConfig.appS.main_activity_fragment_settings_about_text,
+                  AppConfig.appS.main_activity_fragment_settings_language_text,
+              color: SColors.text_hint,
+              fontSize: Dimens.font_broad),
+          flex: 1,
+        ),
+        NormalIconView(
+          iconData: Icons.arrow_forward_ios_sharp,
+          fontSize: Dimens.font_broad,
+          color: SColors.text_hint,
+          icon: -1,
+        ),
+      ],
+    );
+    return Container(
+      child: GestureDetector(
+          child: contentView,
+          onTap: () {
+            _controller.jumpToChangeLanguageActivity();
+          },
+          behavior: HitTestBehavior.translucent),
+      padding: EdgeInsets.symmetric(
+          horizontal: Dimens.margin_normal, vertical: Dimens.margin_normal),
+      decoration: BoxDecoration(
+        color: SColors.main_help,
+        borderRadius: BorderRadius.all(
+          Radius.circular(Dimens.radius_normal),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSystemAboutUsView() {
+    Widget contentView = Row(
+      children: [
+        Expanded(
+          child: NormalTextView(
+              content:
+                  AppConfig.appS.main_activity_fragment_settings_about_text,
               color: SColors.text_hint,
               fontSize: Dimens.font_broad),
           flex: 1,
@@ -241,7 +280,7 @@ class MainActivityFragmentSettingsState
             behavior: HitTestBehavior.translucent,
             child: NormalTextView(
                 content:
-                AppConfig.appS.main_activity_fragment_settings_log_out_text,
+                    AppConfig.appS.main_activity_fragment_settings_log_out_text,
                 color: SColors.log_out,
                 fontSize: Dimens.font_broad),
             onTap: () {

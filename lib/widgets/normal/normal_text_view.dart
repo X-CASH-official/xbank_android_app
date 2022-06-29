@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:x_bank/configs/font_config.dart';
 import 'package:x_bank/resources/dimens.dart';
 import 'package:x_bank/resources/s_colors.dart';
 
@@ -42,14 +43,13 @@ class NormalTextView extends StatelessWidget {
 
     TextStyle theTextStyle = textStyle ??
         TextStyle(
-          fontSize: theFontSize,
-          color: theColor,
-          fontWeight: fontWeight,
-          fontFamily: fontFamily,
-          decoration: decoration,
-          textBaseline: textBaseline,
-          // height: FontConfig.font_size_scale
-        );
+            fontSize: theFontSize,
+            color: theColor,
+            fontWeight: fontWeight,
+            fontFamily: fontFamily,
+            decoration: decoration,
+            textBaseline: textBaseline,
+            height: FontConfig.font_size_scale);
     Widget contentView = Text(
       content ?? "",
       maxLines: maxLines,

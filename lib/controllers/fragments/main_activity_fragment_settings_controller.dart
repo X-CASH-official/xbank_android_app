@@ -46,7 +46,7 @@ class MainActivityFragmentSettingsController extends BaseController {
     return userInfo!.user_id ?? "";
   }
 
-  void copyId(){
+  void copyId() {
     ClipboardUtil.setData(getUserId());
     ToastUtil.showShortToast(AppConfig.appS.copy_success);
   }
@@ -66,6 +66,10 @@ class MainActivityFragmentSettingsController extends BaseController {
 
   void jumpToChangePasswordActivity() async {
     NavigatorUtil.jumpTo(context, ActivityName.ChangePasswordActivity);
+  }
+
+  void jumpToChangeLanguageActivity() {
+    NavigatorUtil.jumpTo(context, ActivityName.ChangeLanguageActivity);
   }
 
   @override

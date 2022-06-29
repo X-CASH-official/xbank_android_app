@@ -200,8 +200,10 @@ class MainActivityFragmentTransferController extends BaseController {
     baseActivityState.baseDialogController?.hide();
   }
 
-  Future<void> updateTransfers() async{
-    (ActivityManager().getTargetActivity<MainActivityState>()?.baseController as MainActivityController).refresh();
+  Future<void> updateTransfers() async {
+    (ActivityManager().getTargetActivity<MainActivityState>()?.baseController
+            as MainActivityController)
+        .refresh();
   }
 
   void jumpToTransferDetailsActivity(Transfer transfer) async {

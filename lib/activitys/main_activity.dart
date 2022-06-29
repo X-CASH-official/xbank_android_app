@@ -89,6 +89,7 @@ class MainActivityState extends NewBaseActivityState<MainActivity> {
   }
 
   Widget _buildBodyView() {
+    _controller.refreshFragments();
     return IndexedStack(
       children: _controller.fragments,
       index: _controller.currentIndex,
