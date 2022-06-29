@@ -52,7 +52,6 @@ class ChangeLanguageActivityState
 
   Widget _buildContentView() {
     return Column(mainAxisSize: MainAxisSize.min, children: [
-      DimenBoxs.vBoxNormal,
       LanguageItemView(
         title: AppConfig.appS.change_language_activity_english_text,
         onClick: () {
@@ -66,7 +65,6 @@ class ChangeLanguageActivityState
           _controller.updateLanguage(1);
         },
       ),
-      DimenBoxs.vBoxNormal,
     ]);
   }
 }
