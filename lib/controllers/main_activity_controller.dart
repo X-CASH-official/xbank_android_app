@@ -34,7 +34,7 @@ class MainActivityController extends BaseController {
     initTabs();
     initFragments();
     postFrameCallback((callback) async {
-      await applicationController.getAccount();
+      await applicationController.getAccounts();
     });
   }
 

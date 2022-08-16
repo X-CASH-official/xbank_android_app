@@ -31,4 +31,8 @@ class UrlConfig {
   static const String users_account = "/users/$urlKey/account";
 
   static const String users_password = "/users/password";
+
+  static const String users_accounts = "/users/$urlKey/accounts";
+
+  static const String users_swaps = "/users/$urlKey/swaps";
 }

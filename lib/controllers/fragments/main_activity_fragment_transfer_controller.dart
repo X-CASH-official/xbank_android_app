@@ -10,7 +10,7 @@ import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/key_config.dart';
 import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/configs/url_config.dart';
-import 'package:x_bank/models/account.dart';
+import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/models/response/users_accounts_balance_summary_response_data.dart';
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/models/user_info.dart';
@@ -112,11 +112,12 @@ class MainActivityFragmentTransferController extends BaseController {
       return;
     }
     UserInfo? userInfo = await applicationController.getUserInfo();
-    Account? account = await applicationController.getAccount();
+    Accounts? accounts = await applicationController.getAccounts();
     if (userInfo == null ||
         userInfo.user_id == null ||
-        account == null ||
-        account.id == null) {
+        accounts == null ||
+        accounts.xcashAccount == null ||
+        accounts.xcashAccount!.id == null) {
       return;
     }
     Map<String, dynamic> data = {};
@@ -131,7 +132,7 @@ class MainActivityFragmentTransferController extends BaseController {
         Method.POST,
         UrlConfig.users_transfers_check
             .replaceAll(UrlConfig.urlKey, userInfo.user_id!)
-            .replaceAll(UrlConfig.urlKey1, account.id!),
+            .replaceAll(UrlConfig.urlKey1, accounts.xcashAccount!.id!),
         data: data, successCallback: (data, baseEntity) async {
       transfer = data;
       if (data != null) {
@@ -157,11 +158,12 @@ class MainActivityFragmentTransferController extends BaseController {
       return;
     }
     UserInfo? userInfo = await applicationController.getUserInfo();
-    Account? account = await applicationController.getAccount();
+    Accounts? accounts = await applicationController.getAccounts();
     if (userInfo == null ||
         userInfo.user_id == null ||
-        account == null ||
-        account.id == null) {
+        accounts == null ||
+        accounts.xcashAccount == null ||
+        accounts.xcashAccount!.id == null) {
       return;
     }
     Map<String, dynamic> data = {};
@@ -179,7 +181,7 @@ class MainActivityFragmentTransferController extends BaseController {
         Method.POST,
         UrlConfig.users_transfers
             .replaceAll(UrlConfig.urlKey, userInfo.user_id!)
-            .replaceAll(UrlConfig.urlKey1, account.id!),
+            .replaceAll(UrlConfig.urlKey1, accounts.xcashAccount!.id!),
         data: data, successCallback: (data, baseEntity) async {
       ToastUtil.showShortToast(
           AppConfig.appS.main_activity_fragment_transfer_transfer_success_tips);

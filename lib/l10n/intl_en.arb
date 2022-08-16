@@ -9,6 +9,7 @@
   "submit": "Submit",
   "exit_tips": "Click again to exit",
   "xcash_unit_text": "XCASH",
+  "wxcash_unit_text": "WXCASH",
   "copy_success": "Copy success",
   "usd_unit_text": "USD",
   "login_activity_login_title": "Login",

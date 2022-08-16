@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
@@ -203,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tx type:"),
         "usd_unit_text": MessageLookupByLibrary.simpleMessage("USD"),
         "validate_2fa": MessageLookupByLibrary.simpleMessage("2FA validate"),
+        "wxcash_unit_text": MessageLookupByLibrary.simpleMessage("WXCASH"),
         "xcash_unit_text": MessageLookupByLibrary.simpleMessage("XCASH")
       };
 }

@@ -6,7 +6,7 @@ import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/configs/url_config.dart';
-import 'package:x_bank/models/account.dart';
+import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/models/user_info.dart';
 import 'package:x_bank/utils/navigator_util.dart';
 import 'package:x_bank/utils/network_util.dart';
@@ -54,9 +54,9 @@ class LoginActivityController extends BaseController {
         applicationController.updateToken(token);
         applicationController.updateRefreshToken(refreshToken);
         applicationController.updateUserInfo(data);
-        Account? account = await applicationController.getAccount(
+        Accounts? accounts = await applicationController.getAccounts(
             reLogin: false, showErrorTips: isCode2fa);
-        if (account == null) {
+        if (accounts == null) {
           code_2fa = null;
           if (!isCode2fa) {
             ViewUtil.showPopup2faInputViewDialog(context, (value) {

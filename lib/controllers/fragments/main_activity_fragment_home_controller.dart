@@ -7,6 +7,7 @@ import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/key_config.dart';
 import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/configs/url_config.dart';
+import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/models/response/users_accounts_balance_summary_response_data.dart';
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/models/user_info.dart';
@@ -23,18 +24,27 @@ class MainActivityFragmentHomeController extends BaseController {
   late ApplicationController applicationController;
   UsersAccountsBalanceSummaryResponseData?
       usersAccountsBalanceSummaryResponseData;
+  Accounts? accounts;
 
   @override
   void initController(State state, Bundle? bundle) {
     applicationController = ApplicationController.getInstance();
     postFrameCallback((callback) async {
-      await initData();
+      await initData(refreshAccount:false);
     });
   }
 
-  Future<void> initData() async {
+  Future<void> initData({bool refreshAccount = true}) async {
+    accounts= await applicationController.getAccounts(refresh:refreshAccount);
     await getBalanceSummary();
     await getTransfers(true);
+  }
+
+ double getWxcashAmount(){
+    if(accounts==null||accounts!.wxcashAccount==null){
+      return 0;
+    }
+   return (accounts!.wxcashAccount!.balance_atomic??0) / 1000000;
   }
 
   Future<void> getBalanceSummary() async {

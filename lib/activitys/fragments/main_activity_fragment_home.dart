@@ -110,6 +110,13 @@ class MainActivityFragmentHomeState
                   fontSize: Dimens.font_broad),
               DimenBoxs.vBoxSuperNarrow,
               NormalTextView(
+                  content: _controller.getWxcashAmount().toString() +
+                      " " +
+                      AppConfig.appS.wxcash_unit_text,
+                  color: SColors.text_title,
+                  fontSize: Dimens.font_broad),
+              DimenBoxs.vBoxSuperNarrow,
+              NormalTextView(
                   content: (_controller.usersAccountsBalanceSummaryResponseData
                               ?.usd_balance ??
                           "0") +

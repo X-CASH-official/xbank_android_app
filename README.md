@@ -1,6 +1,6 @@
 flutter version 2.5.3
 
-flutter build apk --no-tree-shake-icons --no-sound-null-safety
+flutter build apk --release --no-tree-shake-icons --no-sound-null-safety
 
 flutter run --no-sound-null-safety
 

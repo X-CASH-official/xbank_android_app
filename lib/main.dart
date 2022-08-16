@@ -15,7 +15,7 @@ import 'controllers/extra/theme_controller.dart';
 import 'generated/l10n.dart';
 
 //flutter version 2.5.3
-//flutter build apk --no-tree-shake-icons --no-sound-null-safety    (if flutter is 1.20 or 1.21)
+//flutter build apk --release --no-tree-shake-icons --no-sound-null-safety    (if flutter is 1.20 or 1.21)
 //flutter run --no-sound-null-safety
 //flutter run -d chrome --no-sound-null-safety
 //flutter build web --no-tree-shake-icons --no-sound-null-safety
@@ -51,21 +51,6 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    MaterialApp materialApp = MaterialApp(
-      theme: ThemeData(
-          primaryColor: SColors.primary, backgroundColor: SColors.main_help),
-      home: SplashActivity(),
-      debugShowCheckedModeBanner: false,
-      navigatorKey: AppConfig.navigatorStateKey,
-      onGenerateRoute: RouterManager().router.generator,
-      navigatorObservers: [RouterManager().routeRecorder],
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-    );
     return FutureBuilder<bool>(
       future: AppConfig.initBase(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {

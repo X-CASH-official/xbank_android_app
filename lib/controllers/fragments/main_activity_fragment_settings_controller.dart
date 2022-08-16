@@ -5,7 +5,7 @@ import 'package:framework/base/controllers/base_controller.dart';
 import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/router_config.dart';
-import 'package:x_bank/models/account.dart';
+import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/models/user_info.dart';
 import 'package:x_bank/utils/clipboard_util.dart';
 import 'package:x_bank/utils/navigator_util.dart';
@@ -16,7 +16,7 @@ class MainActivityFragmentSettingsController extends BaseController {
   late ApplicationController applicationController;
   final ScrollController scrollController = ScrollController();
   UserInfo? userInfo;
-  Account? account;
+  Accounts? accounts;
 
   @override
   void initController(State state, Bundle? bundle) {
@@ -28,7 +28,7 @@ class MainActivityFragmentSettingsController extends BaseController {
 
   Future<void> initData() async {
     userInfo = await applicationController.getUserInfo();
-    account = await applicationController.getAccount();
+    accounts = await applicationController.getAccounts();
     notifyListeners();
   }
 

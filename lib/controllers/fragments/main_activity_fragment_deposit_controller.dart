@@ -4,7 +4,7 @@ import 'package:framework/base/bundle.dart';
 import 'package:framework/base/controllers/base_controller.dart';
 import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/app_config.dart';
-import 'package:x_bank/models/account.dart';
+import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/utils/clipboard_util.dart';
 
 import '../extra/application_controller.dart';
@@ -24,9 +24,9 @@ class MainActivityFragmentDepositController extends BaseController {
   }
 
   Future<void> initData() async {
-    Account? account = await applicationController.getAccount();
-    if (account != null) {
-      address = account.integrated_address;
+    Accounts? accounts = await applicationController.getAccounts();
+    if (accounts != null && accounts.xcashAccount != null) {
+      address = accounts.xcashAccount!.integrated_address;
     }
     notifyListeners();
   }

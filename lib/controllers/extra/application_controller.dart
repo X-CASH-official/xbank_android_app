@@ -13,6 +13,7 @@ import 'package:x_bank/configs/key_config.dart';
 import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/configs/url_config.dart';
 import 'package:x_bank/models/account.dart';
+import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/models/user_info.dart';
 import 'package:x_bank/utils/navigator_util.dart';
@@ -21,7 +22,7 @@ import 'package:x_bank/utils/network_util.dart';
 class ApplicationController extends ChangeNotifier {
   late String version;
   UserInfo? userInfo;
-  Account? account;
+  Accounts? accounts;
 
   static ApplicationController getInstance() {
     return Provider.of<ApplicationController>(
@@ -47,7 +48,7 @@ class ApplicationController extends ChangeNotifier {
     SharedPreferencesManager().remove(KeyConfig.sp_refresh_token_key);
     SharedPreferencesManager().remove(KeyConfig.sp_user_info_key);
     userInfo = null;
-    account = null;
+    accounts = null;
     NavigatorUtil.clearTo(context, ActivityName.LoginActivity);
   }
 
@@ -86,22 +87,48 @@ class ApplicationController extends ChangeNotifier {
     return userInfo;
   }
 
-  Future<Account?> getAccount(
-      {bool reLogin = true, bool showErrorTips = true}) async {
-    if (account != null) {
-      return account;
+  Future<Accounts?> getAccounts(
+      {bool reLogin = true, bool refresh = false, bool showErrorTips = true}) async {
+    if (!refresh&&accounts != null) {
+      return accounts;
     }
     UserInfo? userInfo = await getUserInfo();
     if (userInfo == null || userInfo.user_id == null) {
       return null;
     }
+    // Map<String, dynamic> query = {};
+    // await NetworkUtil.request<Account>(Method.GET,
+    //     UrlConfig.users_account.replaceAll(UrlConfig.urlKey, userInfo.user_id!),
+    //     query: query, successCallback: (data, baseEntity) async {
+    //   if (data != null) {
+    //     account = data;
+    //   }
+    // }, errorCallback: (e) async {
+    //   if (reLogin && e.code == 401) {
+    //     ApplicationController.getInstance().loginOut(
+    //         AppConfig.navigatorStateKey.currentContext!,
+    //         showTokenTips: true);
+    //     return;
+    //   }
+    //   if (showErrorTips) {
+    //     ToastUtil.showShortToast(e.msg);
+    //   }
+    // });
+    accounts = Accounts();
     Map<String, dynamic> query = {};
-    await NetworkUtil.request<Account>(Method.GET,
-        UrlConfig.users_account.replaceAll(UrlConfig.urlKey, userInfo.user_id!),
-        query: query, successCallback: (data, baseEntity) async {
-      if (data != null) {
-        account = data;
-      }
+    await NetworkUtil.request<Account>(
+        Method.GET,
+        UrlConfig.users_accounts
+            .replaceAll(UrlConfig.urlKey, userInfo.user_id!),
+        isList: true,
+        query: query, successListCallback: (data, baseEntity) async {
+      data.forEach((item) {
+        if ((item.currency ?? "").toLowerCase() == "xcash") {
+          accounts!.xcashAccount = item;
+        } else if ((item.currency ?? "").toLowerCase() == "wxcash") {
+          accounts!.wxcashAccount = item;
+        }
+      });
     }, errorCallback: (e) async {
       if (reLogin && e.code == 401) {
         ApplicationController.getInstance().loginOut(
@@ -113,12 +140,16 @@ class ApplicationController extends ChangeNotifier {
         ToastUtil.showShortToast(e.msg);
       }
     });
-    return account;
+    return accounts;
   }
 
   Future<List<Transfer>?> getTransfers(Map<String, dynamic> query) async {
     List<Transfer>? transfers;
-    Account? account = await getAccount();
+    Accounts? accounts = await getAccounts();
+    if (accounts == null) {
+      return transfers;
+    }
+    Account? account = accounts.xcashAccount;
     if (account == null || account.id == null) {
       return transfers;
     }
