@@ -10,6 +10,7 @@ import 'package:x_bank/controllers/fragments/main_activity_fragment_transfer_con
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/resources/dimens.dart';
 import 'package:x_bank/resources/s_colors.dart';
+import 'package:x_bank/utils/coin_symbol_util.dart';
 import 'package:x_bank/widgets/normal/normal_button_view.dart';
 import 'package:x_bank/widgets/normal/normal_icon_view.dart';
 import 'package:x_bank/widgets/normal/normal_image_view.dart';
@@ -106,8 +107,11 @@ class MainActivityFragmentTransferState
             fontSize: Dimens.font_normal),
         NormalLoadingInputView(
           fontSize: Dimens.font_normal,
-          hintText: AppConfig
-              .appS.main_activity_fragment_transfer_recipient_address_hint,
+          hintText: _controller.coinSymbol == CoinSymbolUtil.coin_symbol_wxcash
+              ? AppConfig.appS
+                  .main_activity_fragment_transfer_recipient_wxcash_address_hint
+              : AppConfig.appS
+                  .main_activity_fragment_transfer_recipient_xcash_address_hint,
           padding: EdgeInsets.only(left: Dimens.margin_narrow),
           maxLines: 3,
           showLoading: false,
@@ -115,22 +119,26 @@ class MainActivityFragmentTransferState
             _controller.address = value;
           },
         ),
-        NormalTextView(
-            margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
-            content:
-                AppConfig.appS.main_activity_fragment_transfer_payment_id_title,
-            color: SColors.text_content,
-            fontSize: Dimens.font_normal),
-        NormalLoadingInputView(
-          fontSize: Dimens.font_normal,
-          hintText:
-              AppConfig.appS.main_activity_fragment_transfer_payment_id_hint,
-          padding: EdgeInsets.only(left: Dimens.margin_narrow),
-          showLoading: false,
-          onTextChange: (value) {
-            _controller.paymentId = value;
-          },
-        ),
+        _controller.coinSymbol == CoinSymbolUtil.coin_symbol_wxcash
+            ? Container()
+            : NormalTextView(
+                margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
+                content: AppConfig
+                    .appS.main_activity_fragment_transfer_payment_id_title,
+                color: SColors.text_content,
+                fontSize: Dimens.font_normal),
+        _controller.coinSymbol == CoinSymbolUtil.coin_symbol_wxcash
+            ? Container()
+            : NormalLoadingInputView(
+                fontSize: Dimens.font_normal,
+                hintText: AppConfig
+                    .appS.main_activity_fragment_transfer_payment_id_hint,
+                padding: EdgeInsets.only(left: Dimens.margin_narrow),
+                showLoading: false,
+                onTextChange: (value) {
+                  _controller.paymentId = value;
+                },
+              ),
         NormalTextView(
             margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
             content:
@@ -147,7 +155,7 @@ class MainActivityFragmentTransferState
           },
           suffixView: NormalTextView(
               margin: EdgeInsets.symmetric(horizontal: Dimens.margin_narrow),
-              content: AppConfig.appS.xcash_unit_text,
+              content: _controller.coinSymbol,
               color: SColors.text_content,
               fontSize: Dimens.font_normal),
         ),
@@ -236,18 +244,14 @@ class MainActivityFragmentTransferState
               ),
               DimenBoxs.vBoxSuperNarrow,
               NormalTextView(
-                  content: (_controller.usersAccountsBalanceSummaryResponseData
-                              ?.xcash_balance ??
-                          "0") +
+                  content: _controller.getAmount().toString() +
                       " " +
-                      AppConfig.appS.xcash_unit_text,
+                      (_controller.coinSymbol ?? ""),
                   color: SColors.text_title,
                   fontSize: Dimens.font_broad),
               DimenBoxs.vBoxSuperNarrow,
               NormalTextView(
-                  content: (_controller.usersAccountsBalanceSummaryResponseData
-                              ?.usd_balance ??
-                          "0") +
+                  content: _controller.getAmountUsd().toString() +
                       " " +
                       AppConfig.appS.usd_unit_text,
                   color: SColors.text_hint,

@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
@@ -75,18 +76,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please input password"),
         "login_activity_register_text": MessageLookupByLibrary.simpleMessage(
             "I don\'t have an account.I want to register"),
-        "main_activity_fragment_deposit_address_tips":
-            MessageLookupByLibrary.simpleMessage(
-                "To creadit your account,send XCASH to the address below"),
-        "main_activity_fragment_deposit_address_title":
-            MessageLookupByLibrary.simpleMessage(
-                "Deposit XCASH to your account"),
         "main_activity_fragment_deposit_copy_success_tips":
             MessageLookupByLibrary.simpleMessage("Copy to clipboard success"),
         "main_activity_fragment_deposit_copy_text":
             MessageLookupByLibrary.simpleMessage("Copy to clipboard"),
         "main_activity_fragment_deposit_scan_tips":
             MessageLookupByLibrary.simpleMessage("or scan the QR-code below"),
+        "main_activity_fragment_deposit_wxcash_address_tips":
+            MessageLookupByLibrary.simpleMessage(
+                "To creadit your account,send WXCASH to the address below"),
+        "main_activity_fragment_deposit_wxcash_address_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Deposit WXCASH to your account"),
+        "main_activity_fragment_deposit_xcash_address_tips":
+            MessageLookupByLibrary.simpleMessage(
+                "To creadit your account,send XCASH to the address below"),
+        "main_activity_fragment_deposit_xcash_address_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Deposit XCASH to your account"),
         "main_activity_fragment_home_balance_title":
             MessageLookupByLibrary.simpleMessage("TOTAL BALANCE"),
         "main_activity_fragment_settings_about_text":
@@ -103,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change password"),
         "main_activity_fragment_settings_password_title":
             MessageLookupByLibrary.simpleMessage("PASSWORD"),
+        "main_activity_fragment_settings_switch_coin_text":
+            MessageLookupByLibrary.simpleMessage("Switch Coin"),
         "main_activity_fragment_settings_system_title":
             MessageLookupByLibrary.simpleMessage("SYSTEM"),
         "main_activity_fragment_transfer_2fa_text":
@@ -122,11 +131,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Payment ID"),
         "main_activity_fragment_transfer_payment_id_title":
             MessageLookupByLibrary.simpleMessage("PAYMENT ID(OPTIONAL)"),
-        "main_activity_fragment_transfer_recipient_address_hint":
-            MessageLookupByLibrary.simpleMessage(
-                "XCASH address(must be 98 char)"),
         "main_activity_fragment_transfer_recipient_address_title":
             MessageLookupByLibrary.simpleMessage("RECIPIENT ADDRESS"),
+        "main_activity_fragment_transfer_recipient_wxcash_address_hint":
+            MessageLookupByLibrary.simpleMessage("WXCASH address"),
+        "main_activity_fragment_transfer_recipient_xcash_address_hint":
+            MessageLookupByLibrary.simpleMessage(
+                "XCASH address(must be 98 char)"),
         "main_activity_fragment_transfer_refresh_text":
             MessageLookupByLibrary.simpleMessage("Refresh"),
         "main_activity_fragment_transfer_send_text":
@@ -172,6 +183,12 @@ class MessageLookup extends MessageLookupByLibrary {
                 "To start using your X-Bank  account, please verify your email address"),
         "server_error": MessageLookupByLibrary.simpleMessage("Server error"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "switch_coin_activity_title":
+            MessageLookupByLibrary.simpleMessage("Switch Coin"),
+        "switch_coin_activity_wxcash_text":
+            MessageLookupByLibrary.simpleMessage("WXCASH"),
+        "switch_coin_activity_xcash_text":
+            MessageLookupByLibrary.simpleMessage("XCASH"),
         "token_invalid_tips":
             MessageLookupByLibrary.simpleMessage("Token invalid"),
         "transfer_details_activity_title":

@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("返回"),
@@ -71,16 +72,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("请输入密码"),
         "login_activity_register_text":
             MessageLookupByLibrary.simpleMessage("我没有账号，我想要注册"),
-        "main_activity_fragment_deposit_address_tips":
-            MessageLookupByLibrary.simpleMessage("要创建您的帐户，请将XCASH发送到以下地址"),
-        "main_activity_fragment_deposit_address_title":
-            MessageLookupByLibrary.simpleMessage("充值XCASH到你的账户"),
         "main_activity_fragment_deposit_copy_success_tips":
             MessageLookupByLibrary.simpleMessage("成功复制到粘贴板"),
         "main_activity_fragment_deposit_copy_text":
             MessageLookupByLibrary.simpleMessage("复制到粘贴板"),
         "main_activity_fragment_deposit_scan_tips":
             MessageLookupByLibrary.simpleMessage("或者扫描下面的二维码"),
+        "main_activity_fragment_deposit_wxcash_address_tips":
+            MessageLookupByLibrary.simpleMessage("要创建您的帐户，请将WXCASH发送到以下地址"),
+        "main_activity_fragment_deposit_wxcash_address_title":
+            MessageLookupByLibrary.simpleMessage("充值WXCASH到你的账户"),
         "main_activity_fragment_home_balance_title":
             MessageLookupByLibrary.simpleMessage("累计金额"),
         "main_activity_fragment_settings_about_text":
@@ -97,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("修改密码"),
         "main_activity_fragment_settings_password_title":
             MessageLookupByLibrary.simpleMessage("密码"),
+        "main_activity_fragment_settings_switch_coin_text":
+            MessageLookupByLibrary.simpleMessage("切换币种"),
         "main_activity_fragment_settings_system_title":
             MessageLookupByLibrary.simpleMessage("系统"),
         "main_activity_fragment_transfer_2fa_text":
@@ -115,10 +118,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("支付ID"),
         "main_activity_fragment_transfer_payment_id_title":
             MessageLookupByLibrary.simpleMessage("支付ID(可选)"),
-        "main_activity_fragment_transfer_recipient_address_hint":
-            MessageLookupByLibrary.simpleMessage("XCASH地址(必须为98个字符)"),
         "main_activity_fragment_transfer_recipient_address_title":
             MessageLookupByLibrary.simpleMessage("接受地址"),
+        "main_activity_fragment_transfer_recipient_wxcash_address_hint":
+            MessageLookupByLibrary.simpleMessage("WXCASH地址"),
+        "main_activity_fragment_transfer_recipient_xcash_address_hint":
+            MessageLookupByLibrary.simpleMessage("XCASH地址(必须为98个字符)"),
         "main_activity_fragment_transfer_refresh_text":
             MessageLookupByLibrary.simpleMessage("刷新"),
         "main_activity_fragment_transfer_send_text":
@@ -161,6 +166,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("要开始使用您的X银行帐户，请验证您的电子邮件地址"),
         "server_error": MessageLookupByLibrary.simpleMessage("服务异常"),
         "submit": MessageLookupByLibrary.simpleMessage("提交"),
+        "switch_coin_activity_title":
+            MessageLookupByLibrary.simpleMessage("切换币种"),
+        "switch_coin_activity_wxcash_text":
+            MessageLookupByLibrary.simpleMessage("WXCASH"),
+        "switch_coin_activity_xcash_text":
+            MessageLookupByLibrary.simpleMessage("XCASH"),
         "token_invalid_tips": MessageLookupByLibrary.simpleMessage("Token验证失败"),
         "transfer_details_activity_title":
             MessageLookupByLibrary.simpleMessage("交易详情"),
@@ -190,6 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("交易类型:"),
         "usd_unit_text": MessageLookupByLibrary.simpleMessage("USD"),
         "validate_2fa": MessageLookupByLibrary.simpleMessage("2FA验证"),
+        "wxcash_unit_text": MessageLookupByLibrary.simpleMessage("WXCASH"),
         "xcash_unit_text": MessageLookupByLibrary.simpleMessage("XCASH")
       };
 }

@@ -15,4 +15,6 @@ class KeyConfig {
   static const String web_view_title_key = "web_view_title_key";
 
   static const String language_key = "language_key";
+
+  static const String coin_symbol_key = "coin_symbol_key";
 }

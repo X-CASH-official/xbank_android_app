@@ -8,6 +8,7 @@ import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/controllers/fragments/main_activity_fragment_deposit_controller.dart';
 import 'package:x_bank/resources/dimens.dart';
 import 'package:x_bank/resources/s_colors.dart';
+import 'package:x_bank/utils/coin_symbol_util.dart';
 import 'package:x_bank/utils/view_util.dart';
 import 'package:x_bank/widgets/normal/normal_button_view.dart';
 import 'package:x_bank/widgets/normal/normal_text_view.dart';
@@ -108,8 +109,11 @@ class MainActivityFragmentDepositState
             margin: EdgeInsets.symmetric(
                 vertical: Dimens.margin_narrow,
                 horizontal: Dimens.margin_normal),
-            content:
-                AppConfig.appS.main_activity_fragment_deposit_address_title,
+            content: _controller.coinSymbol == CoinSymbolUtil.coin_symbol_wxcash
+                ? AppConfig
+                    .appS.main_activity_fragment_deposit_wxcash_address_title
+                : AppConfig
+                    .appS.main_activity_fragment_deposit_xcash_address_title,
             color: SColors.text_title,
             fontWeight: FontWeight.w600,
             maxLines: AppConfig.maxLines,
@@ -118,7 +122,11 @@ class MainActivityFragmentDepositState
             margin: EdgeInsets.symmetric(
                 vertical: Dimens.margin_narrow,
                 horizontal: Dimens.margin_normal),
-            content: AppConfig.appS.main_activity_fragment_deposit_address_tips,
+            content: _controller.coinSymbol == CoinSymbolUtil.coin_symbol_wxcash
+                ? AppConfig
+                    .appS.main_activity_fragment_deposit_wxcash_address_tips
+                : AppConfig
+                    .appS.main_activity_fragment_deposit_xcash_address_tips,
             color: SColors.text_content,
             maxLines: AppConfig.maxLines,
             fontSize: Dimens.font_normal),

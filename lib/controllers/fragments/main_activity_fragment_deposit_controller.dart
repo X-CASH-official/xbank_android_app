@@ -6,6 +6,7 @@ import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/utils/clipboard_util.dart';
+import 'package:x_bank/utils/coin_symbol_util.dart';
 
 import '../extra/application_controller.dart';
 
@@ -14,10 +15,12 @@ class MainActivityFragmentDepositController extends BaseController {
   final ScrollController scrollController = ScrollController();
 
   String? address;
+  String? coinSymbol;
 
   @override
   void initController(State state, Bundle? bundle) {
     applicationController = ApplicationController.getInstance();
+    updateCoinSymbol();
     postFrameCallback((callback) async {
       await initData();
     });
@@ -25,8 +28,17 @@ class MainActivityFragmentDepositController extends BaseController {
 
   Future<void> initData() async {
     Accounts? accounts = await applicationController.getAccounts();
-    if (accounts != null && accounts.xcashAccount != null) {
-      address = accounts.xcashAccount!.integrated_address;
+    if (accounts == null) {
+      return;
+    }
+    if (coinSymbol == CoinSymbolUtil.coin_symbol_wxcash) {
+      if (accounts.wxcashAccount != null) {
+        address = accounts.wxcashAccount!.wallet_id;
+      }
+    } else {
+      if (accounts.xcashAccount != null) {
+        address = accounts.xcashAccount!.integrated_address;
+      }
     }
     notifyListeners();
   }
@@ -38,6 +50,12 @@ class MainActivityFragmentDepositController extends BaseController {
     ToastUtil.showShortToast(
         AppConfig.appS.main_activity_fragment_deposit_copy_success_tips);
     ClipboardUtil.setData(address!);
+  }
+
+  Future<void> updateCoinSymbol() async {
+    coinSymbol = CoinSymbolUtil.getSelectCoinSymbol();
+    await initData();
+    // notifyListeners();
   }
 
   @override

@@ -88,8 +88,10 @@ class ApplicationController extends ChangeNotifier {
   }
 
   Future<Accounts?> getAccounts(
-      {bool reLogin = true, bool refresh = false, bool showErrorTips = true}) async {
-    if (!refresh&&accounts != null) {
+      {bool reLogin = true,
+      bool refresh = false,
+      bool showErrorTips = true}) async {
+    if (!refresh && accounts != null) {
       return accounts;
     }
     UserInfo? userInfo = await getUserInfo();

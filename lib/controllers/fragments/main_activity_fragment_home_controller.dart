@@ -11,6 +11,7 @@ import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/models/response/users_accounts_balance_summary_response_data.dart';
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/models/user_info.dart';
+import 'package:x_bank/utils/coin_symbol_util.dart';
 import 'package:x_bank/utils/navigator_util.dart';
 import 'package:x_bank/utils/network_util.dart';
 import 'package:x_bank/widgets/pull_refresh_view.dart';
@@ -25,26 +26,46 @@ class MainActivityFragmentHomeController extends BaseController {
   UsersAccountsBalanceSummaryResponseData?
       usersAccountsBalanceSummaryResponseData;
   Accounts? accounts;
+  double? amountUsdUnit;
+  String? coinSymbol;
 
   @override
   void initController(State state, Bundle? bundle) {
     applicationController = ApplicationController.getInstance();
+    updateCoinSymbol();
     postFrameCallback((callback) async {
-      await initData(refreshAccount:false);
+      await initData(refreshAccount: false);
     });
   }
 
   Future<void> initData({bool refreshAccount = true}) async {
-    accounts= await applicationController.getAccounts(refresh:refreshAccount);
+    accounts = await applicationController.getAccounts(refresh: refreshAccount);
     await getBalanceSummary();
     await getTransfers(true);
   }
 
- double getWxcashAmount(){
-    if(accounts==null||accounts!.wxcashAccount==null){
+  double getAmount() {
+    if (accounts == null) {
       return 0;
     }
-   return (accounts!.wxcashAccount!.balance_atomic??0) / 1000000;
+    if (coinSymbol == CoinSymbolUtil.coin_symbol_wxcash) {
+      if (accounts == null || accounts!.wxcashAccount == null) {
+        return 0;
+      }
+      return (accounts!.wxcashAccount!.balance_atomic ?? 0) / 1000000;
+    } else {
+      if (accounts == null || accounts!.xcashAccount == null) {
+        return 0;
+      }
+      return (accounts!.xcashAccount!.balance_atomic ?? 0) / 1000000;
+    }
+  }
+
+  double getAmountUsd() {
+    if (amountUsdUnit == null) {
+      return 0;
+    }
+    return getAmount() * amountUsdUnit!;
   }
 
   Future<void> getBalanceSummary() async {
@@ -60,6 +81,11 @@ class MainActivityFragmentHomeController extends BaseController {
         query: query, successCallback: (data, baseEntity) async {
       if (data != null) {
         usersAccountsBalanceSummaryResponseData = data;
+        if (data.usd_balance != null && data.xcash_balance != null) {
+          double theUsdBalance = double.tryParse(data.usd_balance!) ?? 0;
+          double theXcashBalance = double.tryParse(data.xcash_balance!) ?? 0;
+          amountUsdUnit = theUsdBalance / theXcashBalance;
+        }
       }
     }, errorCallback: (e) async {
       ToastUtil.showShortToast(e.msg);
@@ -72,6 +98,9 @@ class MainActivityFragmentHomeController extends BaseController {
     Map<String, dynamic> query = {};
     query["page"] = pullRefreshController.index;
     query["page_size"] = 100;
+    if (coinSymbol != null) {
+      query["currency"] = coinSymbol;
+    }
     // query["type"] = "all";
     List<Transfer>? transfers = await applicationController.getTransfers(query);
     if (transfers == null) {
@@ -81,11 +110,17 @@ class MainActivityFragmentHomeController extends BaseController {
     pullRefreshController.addPage(isRefresh, transfers, transfers.length == 0);
   }
 
-  void jumpToTransferDetailsActivity(Transfer transfer) async {
+  void jumpToTransferDetailsActivity(Transfer transfer) {
     Bundle bundle = Bundle();
     bundle.putObject(KeyConfig.transfer_key, transfer);
     NavigatorUtil.jumpTo(context, ActivityName.TransferDetailsActivity,
         bundle: bundle);
+  }
+
+  Future<void> updateCoinSymbol() async {
+    coinSymbol = CoinSymbolUtil.getSelectCoinSymbol();
+    await initData(refreshAccount: true);
+    notifyListeners();
   }
 
   @override

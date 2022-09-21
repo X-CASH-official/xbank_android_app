@@ -8,6 +8,7 @@ import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/models/user_info.dart';
 import 'package:x_bank/utils/clipboard_util.dart';
+import 'package:x_bank/utils/coin_symbol_util.dart';
 import 'package:x_bank/utils/navigator_util.dart';
 
 import '../extra/application_controller.dart';
@@ -17,10 +18,12 @@ class MainActivityFragmentSettingsController extends BaseController {
   final ScrollController scrollController = ScrollController();
   UserInfo? userInfo;
   Accounts? accounts;
+  String? coinSymbol;
 
   @override
   void initController(State state, Bundle? bundle) {
     applicationController = ApplicationController.getInstance();
+    updateCoinSymbol();
     postFrameCallback((callback) async {
       await initData();
     });
@@ -70,6 +73,16 @@ class MainActivityFragmentSettingsController extends BaseController {
 
   void jumpToChangeLanguageActivity() {
     NavigatorUtil.jumpTo(context, ActivityName.ChangeLanguageActivity);
+  }
+
+  void jumpToSwitchCoinActivity() {
+    NavigatorUtil.jumpTo(context, ActivityName.SwitchCoinActivity);
+  }
+
+  Future<void> updateCoinSymbol() async {
+    coinSymbol = CoinSymbolUtil.getSelectCoinSymbol();
+    await initData();
+    // notifyListeners();
   }
 
   @override

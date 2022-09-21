@@ -103,6 +103,8 @@ class MainActivityFragmentSettingsState
             fontSize: Dimens.font_normal),
         _buildSystemLanguageView(),
         DimenBoxs.vBoxBroad,
+        _buildSwitchCoinView(),
+        DimenBoxs.vBoxBroad,
         _buildSystemAboutUsView(),
         DimenBoxs.vBoxBroad,
         _buildLogOutView()
@@ -222,6 +224,43 @@ class MainActivityFragmentSettingsState
           child: contentView,
           onTap: () {
             _controller.jumpToChangeLanguageActivity();
+          },
+          behavior: HitTestBehavior.translucent),
+      padding: EdgeInsets.symmetric(
+          horizontal: Dimens.margin_normal, vertical: Dimens.margin_normal),
+      decoration: BoxDecoration(
+        color: SColors.main_help,
+        borderRadius: BorderRadius.all(
+          Radius.circular(Dimens.radius_normal),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSwitchCoinView() {
+    Widget contentView = Row(
+      children: [
+        Expanded(
+          child: NormalTextView(
+              content: AppConfig
+                  .appS.main_activity_fragment_settings_switch_coin_text,
+              color: SColors.text_hint,
+              fontSize: Dimens.font_broad),
+          flex: 1,
+        ),
+        NormalIconView(
+          iconData: Icons.arrow_forward_ios_sharp,
+          fontSize: Dimens.font_broad,
+          color: SColors.text_hint,
+          icon: -1,
+        ),
+      ],
+    );
+    return Container(
+      child: GestureDetector(
+          child: contentView,
+          onTap: () {
+            _controller.jumpToSwitchCoinActivity();
           },
           behavior: HitTestBehavior.translucent),
       padding: EdgeInsets.symmetric(

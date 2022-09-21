@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -431,10 +432,20 @@ class S {
   }
 
   /// `XCASH address(must be 98 char)`
-  String get main_activity_fragment_transfer_recipient_address_hint {
+  String get main_activity_fragment_transfer_recipient_xcash_address_hint {
     return Intl.message(
       'XCASH address(must be 98 char)',
-      name: 'main_activity_fragment_transfer_recipient_address_hint',
+      name: 'main_activity_fragment_transfer_recipient_xcash_address_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WXCASH address`
+  String get main_activity_fragment_transfer_recipient_wxcash_address_hint {
+    return Intl.message(
+      'WXCASH address',
+      name: 'main_activity_fragment_transfer_recipient_wxcash_address_hint',
       desc: '',
       args: [],
     );
@@ -511,20 +522,40 @@ class S {
   }
 
   /// `Deposit XCASH to your account`
-  String get main_activity_fragment_deposit_address_title {
+  String get main_activity_fragment_deposit_xcash_address_title {
     return Intl.message(
       'Deposit XCASH to your account',
-      name: 'main_activity_fragment_deposit_address_title',
+      name: 'main_activity_fragment_deposit_xcash_address_title',
       desc: '',
       args: [],
     );
   }
 
   /// `To creadit your account,send XCASH to the address below`
-  String get main_activity_fragment_deposit_address_tips {
+  String get main_activity_fragment_deposit_xcash_address_tips {
     return Intl.message(
       'To creadit your account,send XCASH to the address below',
-      name: 'main_activity_fragment_deposit_address_tips',
+      name: 'main_activity_fragment_deposit_xcash_address_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deposit WXCASH to your account`
+  String get main_activity_fragment_deposit_wxcash_address_title {
+    return Intl.message(
+      'Deposit WXCASH to your account',
+      name: 'main_activity_fragment_deposit_wxcash_address_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To creadit your account,send WXCASH to the address below`
+  String get main_activity_fragment_deposit_wxcash_address_tips {
+    return Intl.message(
+      'To creadit your account,send WXCASH to the address below',
+      name: 'main_activity_fragment_deposit_wxcash_address_tips',
       desc: '',
       args: [],
     );
@@ -655,6 +686,16 @@ class S {
     return Intl.message(
       'Language',
       name: 'main_activity_fragment_settings_language_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Switch Coin`
+  String get main_activity_fragment_settings_switch_coin_text {
+    return Intl.message(
+      'Switch Coin',
+      name: 'main_activity_fragment_settings_switch_coin_text',
       desc: '',
       args: [],
     );
@@ -989,6 +1030,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Switch Coin`
+  String get switch_coin_activity_title {
+    return Intl.message(
+      'Switch Coin',
+      name: 'switch_coin_activity_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `XCASH`
+  String get switch_coin_activity_xcash_text {
+    return Intl.message(
+      'XCASH',
+      name: 'switch_coin_activity_xcash_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WXCASH`
+  String get switch_coin_activity_wxcash_text {
+    return Intl.message(
+      'WXCASH',
+      name: 'switch_coin_activity_wxcash_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1003,8 +1074,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

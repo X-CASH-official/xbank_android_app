@@ -5,6 +5,7 @@ import 'package:x_bank/activitys/login_activity.dart';
 import 'package:x_bank/activitys/main_activity.dart';
 import 'package:x_bank/activitys/register_activity.dart';
 import 'package:x_bank/activitys/splash_activity.dart';
+import 'package:x_bank/activitys/switch_coin_activity.dart';
 import 'package:x_bank/activitys/transfer_details_activity.dart';
 import 'package:x_bank/activitys/web_view_activity.dart';
 
@@ -16,7 +17,8 @@ enum ActivityName {
   TransferDetailsActivity,
   WebViewActivity,
   ChangePasswordActivity,
-  ChangeLanguageActivity
+  ChangeLanguageActivity,
+  SwitchCoinActivity
 }
 
 class RouterConfig {
@@ -37,5 +39,7 @@ class RouterConfig {
         builderFunction: (bundle) => ChangePasswordActivity(bundle)),
     ActivityName.ChangeLanguageActivity: ActivityBuilder(
         builderFunction: (bundle) => ChangeLanguageActivity(bundle)),
+    ActivityName.SwitchCoinActivity: ActivityBuilder(
+        builderFunction: (bundle) => SwitchCoinActivity(bundle)),
   };
 }

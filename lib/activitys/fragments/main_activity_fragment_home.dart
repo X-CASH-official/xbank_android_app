@@ -101,25 +101,14 @@ class MainActivityFragmentHomeState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               NormalTextView(
-                  content: (_controller.usersAccountsBalanceSummaryResponseData
-                              ?.xcash_balance ??
-                          "0") +
+                  content: _controller.getAmount().toString() +
                       " " +
-                      AppConfig.appS.xcash_unit_text,
+                      (_controller.coinSymbol ?? ""),
                   color: SColors.text_title,
                   fontSize: Dimens.font_broad),
               DimenBoxs.vBoxSuperNarrow,
               NormalTextView(
-                  content: _controller.getWxcashAmount().toString() +
-                      " " +
-                      AppConfig.appS.wxcash_unit_text,
-                  color: SColors.text_title,
-                  fontSize: Dimens.font_broad),
-              DimenBoxs.vBoxSuperNarrow,
-              NormalTextView(
-                  content: (_controller.usersAccountsBalanceSummaryResponseData
-                              ?.usd_balance ??
-                          "0") +
+                  content: _controller.getAmountUsd().toString() +
                       " " +
                       AppConfig.appS.usd_unit_text,
                   color: SColors.text_hint,

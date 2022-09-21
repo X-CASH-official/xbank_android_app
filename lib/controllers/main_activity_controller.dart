@@ -10,6 +10,8 @@ import 'package:x_bank/activitys/fragments/main_activity_fragment_settings.dart'
 import 'package:x_bank/activitys/fragments/main_activity_fragment_transfer.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/assets_config.dart';
+import 'package:x_bank/controllers/fragments/main_activity_fragment_deposit_controller.dart';
+import 'package:x_bank/controllers/fragments/main_activity_fragment_settings_controller.dart';
 import 'package:x_bank/models/extra/tab_item.dart';
 import 'package:x_bank/resources/s_colors.dart';
 
@@ -86,6 +88,28 @@ class MainActivityController extends BaseController {
 
   void updateLanguage() {
     initTabs();
+    notifyListeners();
+  }
+
+  void updateCoinSymbol() {
+    ((fragments[0] as MainActivityFragmentHome).stateCache.state?.baseController
+            as MainActivityFragmentHomeController)
+        .updateCoinSymbol();
+    ((fragments[1] as MainActivityFragmentDeposit)
+            .stateCache
+            .state
+            ?.baseController as MainActivityFragmentDepositController)
+        .updateCoinSymbol();
+    ((fragments[2] as MainActivityFragmentTransfer)
+            .stateCache
+            .state
+            ?.baseController as MainActivityFragmentTransferController)
+        .updateCoinSymbol();
+    ((fragments[3] as MainActivityFragmentSettings)
+            .stateCache
+            .state
+            ?.baseController as MainActivityFragmentSettingsController)
+        .updateCoinSymbol();
     notifyListeners();
   }
 

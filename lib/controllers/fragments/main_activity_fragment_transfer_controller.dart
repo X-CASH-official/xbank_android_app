@@ -14,6 +14,7 @@ import 'package:x_bank/models/extra/accounts.dart';
 import 'package:x_bank/models/response/users_accounts_balance_summary_response_data.dart';
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/models/user_info.dart';
+import 'package:x_bank/utils/coin_symbol_util.dart';
 import 'package:x_bank/utils/navigator_util.dart';
 import 'package:x_bank/utils/network_util.dart';
 import 'package:x_bank/utils/view_util.dart';
@@ -36,34 +37,47 @@ class MainActivityFragmentTransferController extends BaseController {
   Transfer? transfer;
   String? code_2fa;
   late AnimationController animationController;
+  Accounts? accounts;
+  double? amountUsdUnit;
+  String? coinSymbol;
 
   @override
   void initController(State state, Bundle? bundle) {
     applicationController = ApplicationController.getInstance();
+    updateCoinSymbol();
     postFrameCallback((callback) async {
-      await initData();
+      await initData(refreshAccount: false);
     });
   }
 
-  void openNewTransfer() {
-    isTransfer = true;
-    notifyListeners();
-  }
-
-  void closeNewTransfer() {
-    isTransfer = false;
-    notifyListeners();
-  }
-
-  Future<void> initData() async {
+  Future<void> initData({bool refreshAccount = true}) async {
+    accounts = await applicationController.getAccounts(refresh: refreshAccount);
     await getBalanceSummary();
     await getTransfers(true);
   }
 
-  Future<void> doRefresh() async {
-    animationController.reset();
-    animationController.forward();
-    await initData();
+  double getAmount() {
+    if (accounts == null) {
+      return 0;
+    }
+    if (coinSymbol == CoinSymbolUtil.coin_symbol_wxcash) {
+      if (accounts == null || accounts!.wxcashAccount == null) {
+        return 0;
+      }
+      return (accounts!.wxcashAccount!.balance_atomic ?? 0) / 1000000;
+    } else {
+      if (accounts == null || accounts!.xcashAccount == null) {
+        return 0;
+      }
+      return (accounts!.xcashAccount!.balance_atomic ?? 0) / 1000000;
+    }
+  }
+
+  double getAmountUsd() {
+    if (amountUsdUnit == null) {
+      return 0;
+    }
+    return getAmount() * amountUsdUnit!;
   }
 
   Future<void> getBalanceSummary() async {
@@ -92,6 +106,9 @@ class MainActivityFragmentTransferController extends BaseController {
     query["page"] = pullRefreshController.index;
     query["page_size"] = 100;
     query["type"] = "out";
+    if (coinSymbol != null) {
+      query["currency"] = coinSymbol;
+    }
     List<Transfer>? transfers = await applicationController.getTransfers(query);
     if (transfers == null) {
       pullRefreshController.stopLoading(true);
@@ -126,7 +143,9 @@ class MainActivityFragmentTransferController extends BaseController {
       data["payment_id"] = paymentId;
     }
     data["atomic_amount"] = int.parse(amount!) * 1000000;
-    data["currency"] = "XCASH";
+    if (coinSymbol != null) {
+      data["currency"] = coinSymbol;
+    }
     baseActivityState.baseDialogController?.show(AppConfig.appS.loading);
     await NetworkUtil.request<Transfer>(
         Method.POST,
@@ -175,7 +194,9 @@ class MainActivityFragmentTransferController extends BaseController {
     if (code_2fa != null) {
       data["code_2fa"] = code_2fa;
     }
-    data["currency"] = "XCASH";
+    if (coinSymbol != null) {
+      data["currency"] = coinSymbol;
+    }
     baseActivityState.baseDialogController?.show(AppConfig.appS.loading);
     await NetworkUtil.request<Transfer>(
         Method.POST,
@@ -213,6 +234,28 @@ class MainActivityFragmentTransferController extends BaseController {
     bundle.putObject(KeyConfig.transfer_key, transfer);
     NavigatorUtil.jumpTo(context, ActivityName.TransferDetailsActivity,
         bundle: bundle);
+  }
+
+  Future<void> doRefresh() async {
+    animationController.reset();
+    animationController.forward();
+    await initData();
+  }
+
+  void openNewTransfer() {
+    isTransfer = true;
+    notifyListeners();
+  }
+
+  void closeNewTransfer() {
+    isTransfer = false;
+    notifyListeners();
+  }
+
+  Future<void> updateCoinSymbol() async {
+    coinSymbol = CoinSymbolUtil.getSelectCoinSymbol();
+    await initData();
+    notifyListeners();
   }
 
   @override
