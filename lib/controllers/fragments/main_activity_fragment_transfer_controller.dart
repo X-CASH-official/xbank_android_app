@@ -29,8 +29,6 @@ class MainActivityFragmentTransferController extends BaseController {
 
   bool isTransfer = false;
   late ApplicationController applicationController;
-  UsersAccountsBalanceSummaryResponseData?
-      usersAccountsBalanceSummaryResponseData;
   String? address;
   String? paymentId;
   String? amount;
@@ -52,7 +50,7 @@ class MainActivityFragmentTransferController extends BaseController {
 
   Future<void> initData({bool refreshAccount = true}) async {
     accounts = await applicationController.getAccounts(refresh: refreshAccount);
-    await getBalanceSummary();
+    // await getBalanceSummary();
     await getTransfers(true);
   }
 
@@ -73,31 +71,22 @@ class MainActivityFragmentTransferController extends BaseController {
     }
   }
 
+
   double getAmountUsd() {
-    if (amountUsdUnit == null) {
+    if (accounts == null) {
       return 0;
     }
-    return getAmount() * amountUsdUnit!;
-  }
-
-  Future<void> getBalanceSummary() async {
-    UserInfo? userInfo = await applicationController.getUserInfo();
-    if (userInfo == null || userInfo.user_id == null) {
-      return;
-    }
-    Map<String, dynamic> query = {};
-    await NetworkUtil.request<UsersAccountsBalanceSummaryResponseData>(
-        Method.GET,
-        UrlConfig.users_accounts_balance_summary
-            .replaceAll(UrlConfig.urlKey, userInfo.user_id!),
-        query: query, successCallback: (data, baseEntity) async {
-      if (data != null) {
-        usersAccountsBalanceSummaryResponseData = data;
+    if (coinSymbol == CoinSymbolUtil.coin_symbol_wxcash) {
+      if (accounts == null || accounts!.wxcashAccount == null) {
+        return 0;
       }
-    }, errorCallback: (e) async {
-      ToastUtil.showShortToast(e.msg);
-    });
-    notifyListeners();
+      return accounts!.wxcashAccount!.balance_usd ?? 0;
+    } else {
+      if (accounts == null || accounts!.xcashAccount == null) {
+        return 0;
+      }
+      return accounts!.xcashAccount!.balance_usd ?? 0;
+    }
   }
 
   Future<void> getTransfers(bool isRefresh) async {
@@ -106,10 +95,7 @@ class MainActivityFragmentTransferController extends BaseController {
     query["page"] = pullRefreshController.index;
     query["page_size"] = 100;
     query["type"] = "out";
-    if (coinSymbol != null) {
-      query["currency"] = coinSymbol;
-    }
-    List<Transfer>? transfers = await applicationController.getTransfers(query);
+    List<Transfer>? transfers = await applicationController.getTransfers(query,coinSymbol == CoinSymbolUtil.coin_symbol_wxcash);
     if (transfers == null) {
       pullRefreshController.stopLoading(true);
       return;

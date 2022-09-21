@@ -23,11 +23,12 @@ class MainActivityFragmentHomeController extends BaseController {
       PullRefreshController<Transfer>();
 
   late ApplicationController applicationController;
-  UsersAccountsBalanceSummaryResponseData?
-      usersAccountsBalanceSummaryResponseData;
+
   Accounts? accounts;
   double? amountUsdUnit;
   String? coinSymbol;
+  // UsersAccountsBalanceSummaryResponseData?
+  //     usersAccountsBalanceSummaryResponseData;
 
   @override
   void initController(State state, Bundle? bundle) {
@@ -40,7 +41,7 @@ class MainActivityFragmentHomeController extends BaseController {
 
   Future<void> initData({bool refreshAccount = true}) async {
     accounts = await applicationController.getAccounts(refresh: refreshAccount);
-    await getBalanceSummary();
+    // await getBalanceSummary();
     await getTransfers(true);
   }
 
@@ -62,47 +63,54 @@ class MainActivityFragmentHomeController extends BaseController {
   }
 
   double getAmountUsd() {
-    if (amountUsdUnit == null) {
+    if (accounts == null) {
       return 0;
     }
-    return getAmount() * amountUsdUnit!;
+    if (coinSymbol == CoinSymbolUtil.coin_symbol_wxcash) {
+      if (accounts == null || accounts!.wxcashAccount == null) {
+        return 0;
+      }
+      return accounts!.wxcashAccount!.balance_usd ?? 0;
+    } else {
+      if (accounts == null || accounts!.xcashAccount == null) {
+        return 0;
+      }
+      return accounts!.xcashAccount!.balance_usd ?? 0;
+    }
   }
 
-  Future<void> getBalanceSummary() async {
-    UserInfo? userInfo = await applicationController.getUserInfo();
-    if (userInfo == null || userInfo.user_id == null) {
-      return;
-    }
-    Map<String, dynamic> query = {};
-    await NetworkUtil.request<UsersAccountsBalanceSummaryResponseData>(
-        Method.GET,
-        UrlConfig.users_accounts_balance_summary
-            .replaceAll(UrlConfig.urlKey, userInfo.user_id!),
-        query: query, successCallback: (data, baseEntity) async {
-      if (data != null) {
-        usersAccountsBalanceSummaryResponseData = data;
-        if (data.usd_balance != null && data.xcash_balance != null) {
-          double theUsdBalance = double.tryParse(data.usd_balance!) ?? 0;
-          double theXcashBalance = double.tryParse(data.xcash_balance!) ?? 0;
-          amountUsdUnit = theUsdBalance / theXcashBalance;
-        }
-      }
-    }, errorCallback: (e) async {
-      ToastUtil.showShortToast(e.msg);
-    });
-    notifyListeners();
-  }
+  // Future<void> getBalanceSummary() async {
+  //   UserInfo? userInfo = await applicationController.getUserInfo();
+  //   if (userInfo == null || userInfo.user_id == null) {
+  //     return;
+  //   }
+  //   Map<String, dynamic> query = {};
+  //   await NetworkUtil.request<UsersAccountsBalanceSummaryResponseData>(
+  //       Method.GET,
+  //       UrlConfig.users_accounts_balance_summary
+  //           .replaceAll(UrlConfig.urlKey, userInfo.user_id!),
+  //       query: query, successCallback: (data, baseEntity) async {
+  //     if (data != null) {
+  //       usersAccountsBalanceSummaryResponseData = data;
+  //       if (data.usd_balance != null && data.xcash_balance != null) {
+  //         double theUsdBalance = double.tryParse(data.usd_balance!) ?? 0;
+  //         double theXcashBalance = double.tryParse(data.xcash_balance!) ?? 0;
+  //         amountUsdUnit = theUsdBalance / theXcashBalance;
+  //       }
+  //     }
+  //   }, errorCallback: (e) async {
+  //     ToastUtil.showShortToast(e.msg);
+  //   });
+  //   notifyListeners();
+  // }
 
   Future<void> getTransfers(bool isRefresh) async {
     pullRefreshController.checkResetIndex(isRefresh);
     Map<String, dynamic> query = {};
     query["page"] = pullRefreshController.index;
     query["page_size"] = 100;
-    if (coinSymbol != null) {
-      query["currency"] = coinSymbol;
-    }
     // query["type"] = "all";
-    List<Transfer>? transfers = await applicationController.getTransfers(query);
+    List<Transfer>? transfers = await applicationController.getTransfers(query,coinSymbol == CoinSymbolUtil.coin_symbol_wxcash);
     if (transfers == null) {
       pullRefreshController.stopLoading(true);
       return;

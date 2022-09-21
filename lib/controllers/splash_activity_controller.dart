@@ -24,6 +24,7 @@ class SplashActivityController extends BaseController {
 
   void goToJump() async {
     if (applicationController.getToken() != null) {
+      await applicationController.getAccounts(refresh: true);
       NavigatorUtil.replaceTo(context, ActivityName.MainActivity);
     } else {
       NavigatorUtil.replaceTo(context, ActivityName.LoginActivity);

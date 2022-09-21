@@ -108,7 +108,7 @@ class MainActivityFragmentHomeState
                   fontSize: Dimens.font_broad),
               DimenBoxs.vBoxSuperNarrow,
               NormalTextView(
-                  content: _controller.getAmountUsd().toString() +
+                  content: _controller.getAmountUsd().toStringAsFixed(6) +
                       " " +
                       AppConfig.appS.usd_unit_text,
                   color: SColors.text_hint,

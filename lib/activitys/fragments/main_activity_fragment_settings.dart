@@ -170,7 +170,7 @@ class MainActivityFragmentSettingsState
           child: NormalTextView(
               content:
                   AppConfig.appS.main_activity_fragment_settings_password_text,
-              color: SColors.text_title,
+              color: SColors.text_content,
               fontSize: Dimens.font_broad),
           flex: 1,
         ),
@@ -207,7 +207,7 @@ class MainActivityFragmentSettingsState
           child: NormalTextView(
               content:
                   AppConfig.appS.main_activity_fragment_settings_language_text,
-              color: SColors.text_hint,
+              color: SColors.text_content,
               fontSize: Dimens.font_broad),
           flex: 1,
         ),
@@ -244,7 +244,7 @@ class MainActivityFragmentSettingsState
           child: NormalTextView(
               content: AppConfig
                   .appS.main_activity_fragment_settings_switch_coin_text,
-              color: SColors.text_hint,
+              color: SColors.text_content,
               fontSize: Dimens.font_broad),
           flex: 1,
         ),
@@ -281,7 +281,7 @@ class MainActivityFragmentSettingsState
           child: NormalTextView(
               content:
                   AppConfig.appS.main_activity_fragment_settings_about_text,
-              color: SColors.text_hint,
+              color: SColors.text_content,
               fontSize: Dimens.font_broad),
           flex: 1,
         ),
