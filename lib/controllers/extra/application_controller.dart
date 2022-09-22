@@ -44,6 +44,9 @@ class ApplicationController extends ChangeNotifier {
     if (showTokenTips) {
       ToastUtil.showShortToast(AppConfig.appS.token_invalid_tips);
     }
+    if(userInfo==null&&accounts==null){
+      return;
+    }
     SharedPreferencesManager().remove(KeyConfig.sp_token_key);
     SharedPreferencesManager().remove(KeyConfig.sp_refresh_token_key);
     SharedPreferencesManager().remove(KeyConfig.sp_user_info_key);
