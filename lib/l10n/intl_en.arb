@@ -12,6 +12,7 @@
   "wxcash_unit_text": "WXCASH",
   "copy_success": "Copy success",
   "usd_unit_text": "USD",
+  "account_error_tips": "Account error",
   "login_activity_login_title": "Login",
   "login_activity_login_text": "Login",
   "login_activity_account_hint": "Please input account",
@@ -54,6 +55,7 @@
   "main_activity_fragment_deposit_copy_success_tips": "Copy to clipboard success",
   "main_activity_fragment_deposit_scan_tips": "or scan the QR-code below",
   "main_activity_fragment_transfer_create_transfer_title": "CREATE TRANSFER",
+  "main_activity_fragment_transfer_swap_title": "SWAP",
   "main_activity_fragment_transfer_address_empty_tips": "Address can't empty",
   "main_activity_fragment_transfer_amount_empty_tips": "Amount can't empty",
   "main_activity_fragment_transfer_transfer_success_tips": "Transfer success",
@@ -99,5 +101,9 @@
   "change_language_activity_chinese_text": "CHINESE",
   "switch_coin_activity_title": "Switch Coin",
   "switch_coin_activity_xcash_text": "XCASH",
-  "switch_coin_activity_wxcash_text": "WXCASH"
+  "switch_coin_activity_wxcash_text": "WXCASH",
+  "swap_activity_title": "Swap",
+  "swap_activity_button_text": "Swap",
+  "swap_activity_amount_empty_tips": "Amount can't empty",
+  "swap_activity_success_tips": "Swap success"
 }

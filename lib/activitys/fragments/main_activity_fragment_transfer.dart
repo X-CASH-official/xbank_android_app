@@ -291,13 +291,31 @@ class MainActivityFragmentTransferState
     );
     return Column(
       children: [
-        NormalTextView(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
-            content: AppConfig
-                .appS.main_activity_fragment_transfer_create_transfer_title,
-            color: SColors.text_content,
-            fontSize: Dimens.font_normal),
+        Row(
+          children: [
+            NormalTextView(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
+                content: AppConfig
+                    .appS.main_activity_fragment_transfer_create_transfer_title,
+                color: SColors.text_content,
+                fontSize: Dimens.font_normal),
+            Expanded(child: Container()),
+            GestureDetector(
+              onTap: () {
+                _controller.jumpToSwapActivity();
+              },
+              child: NormalTextView(
+                  alignment: Alignment.centerRight,
+                  margin: EdgeInsets.symmetric(vertical: Dimens.margin_narrow),
+                  content:
+                      AppConfig.appS.main_activity_fragment_transfer_swap_title,
+                  color: SColors.primary,
+                  textAlign: TextAlign.center,
+                  fontSize: Dimens.font_normal),
+            )
+          ],
+        ),
         Container(
           child: contentView,
           padding: EdgeInsets.all(Dimens.margin_normal),

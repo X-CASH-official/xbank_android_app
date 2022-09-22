@@ -2,18 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:framework/base/bundle.dart';
 import 'package:framework/base/controllers/base_controller.dart';
-import 'package:framework/utils/network/method.dart';
-import 'package:framework/utils/toast_util.dart';
 import 'package:x_bank/configs/key_config.dart';
 import 'package:x_bank/configs/router_config.dart';
-import 'package:x_bank/configs/url_config.dart';
 import 'package:x_bank/models/extra/accounts.dart';
-import 'package:x_bank/models/response/users_accounts_balance_summary_response_data.dart';
 import 'package:x_bank/models/transfer.dart';
-import 'package:x_bank/models/user_info.dart';
 import 'package:x_bank/utils/coin_symbol_util.dart';
 import 'package:x_bank/utils/navigator_util.dart';
-import 'package:x_bank/utils/network_util.dart';
 import 'package:x_bank/widgets/pull_refresh_view.dart';
 
 import '../extra/application_controller.dart';
@@ -25,8 +19,8 @@ class MainActivityFragmentHomeController extends BaseController {
   late ApplicationController applicationController;
 
   Accounts? accounts;
-  double? amountUsdUnit;
   String? coinSymbol;
+
   // UsersAccountsBalanceSummaryResponseData?
   //     usersAccountsBalanceSummaryResponseData;
 
@@ -43,6 +37,7 @@ class MainActivityFragmentHomeController extends BaseController {
     accounts = await applicationController.getAccounts(refresh: refreshAccount);
     // await getBalanceSummary();
     await getTransfers(true);
+    notifyListeners();
   }
 
   double getAmount() {
@@ -110,7 +105,8 @@ class MainActivityFragmentHomeController extends BaseController {
     query["page"] = pullRefreshController.index;
     query["page_size"] = 100;
     // query["type"] = "all";
-    List<Transfer>? transfers = await applicationController.getTransfers(query,coinSymbol == CoinSymbolUtil.coin_symbol_wxcash);
+    List<Transfer>? transfers = await applicationController.getTransfers(
+        query, coinSymbol == CoinSymbolUtil.coin_symbol_wxcash);
     if (transfers == null) {
       pullRefreshController.stopLoading(true);
       return;

@@ -25,28 +25,34 @@ class NormalLoadingInputView extends StatelessWidget {
   final Pattern pattern;
   final bool showLoading;
   final int? maxLines;
+  final bool enable;
+  final TextAlign? textAlign;
+  final TextEditingController? textEditingController;
 
-  NormalLoadingInputView({
-    Key? key,
-    this.defaultContentText,
-    this.padding,
-    this.fontSize,
-    this.textColor,
-    this.hintText,
-    this.hintColor,
-    this.maxLength,
-    this.background = Colors.transparent,
-    this.radius,
-    this.cursorColor = SColors.text_content,
-    this.cursorWidth,
-    this.onTextChange,
-    this.onEditingComplete,
-    this.suffixView,
-    this.obscureText = false,
-    this.pattern = "",
-    this.showLoading = false,
-    this.maxLines = 1,
-  }) : super(key: key);
+  NormalLoadingInputView(
+      {Key? key,
+      this.defaultContentText,
+      this.padding,
+      this.fontSize,
+      this.textColor,
+      this.hintText,
+      this.hintColor,
+      this.maxLength,
+      this.background = Colors.transparent,
+      this.radius,
+      this.cursorColor = SColors.text_content,
+      this.cursorWidth,
+      this.onTextChange,
+      this.onEditingComplete,
+      this.suffixView,
+      this.obscureText = false,
+      this.pattern = "",
+      this.showLoading = false,
+      this.maxLines = 1,
+      this.enable = true,
+      this.textAlign,
+      this.textEditingController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +60,15 @@ class NormalLoadingInputView extends StatelessWidget {
     double theFontSize = fontSize ?? Dimens.font_normal;
     Color theHintColor = hintColor ?? SColors.text_hint;
     NormalInputView normalInputView = NormalInputView(
+      textEditingController: textEditingController,
+      enable: enable,
       disposeTextEditingController: false,
       text: defaultContentText,
       textColor: theTextColor,
       fontSize: theFontSize,
       maxLines: maxLines,
+      textAlign: textAlign,
+      showDisabledBorder: false,
       inputFormatters: pattern != ""
           ? [
               FilteringTextInputFormatter.allow(pattern),

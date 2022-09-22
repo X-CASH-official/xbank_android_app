@@ -10,8 +10,8 @@ import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/key_config.dart';
 import 'package:x_bank/configs/router_config.dart';
 import 'package:x_bank/configs/url_config.dart';
+import 'package:x_bank/models/account.dart';
 import 'package:x_bank/models/extra/accounts.dart';
-import 'package:x_bank/models/response/users_accounts_balance_summary_response_data.dart';
 import 'package:x_bank/models/transfer.dart';
 import 'package:x_bank/models/user_info.dart';
 import 'package:x_bank/utils/coin_symbol_util.dart';
@@ -36,7 +36,6 @@ class MainActivityFragmentTransferController extends BaseController {
   String? code_2fa;
   late AnimationController animationController;
   Accounts? accounts;
-  double? amountUsdUnit;
   String? coinSymbol;
 
   @override
@@ -52,6 +51,7 @@ class MainActivityFragmentTransferController extends BaseController {
     accounts = await applicationController.getAccounts(refresh: refreshAccount);
     // await getBalanceSummary();
     await getTransfers(true);
+    notifyListeners();
   }
 
   double getAmount() {
@@ -70,7 +70,6 @@ class MainActivityFragmentTransferController extends BaseController {
       return (accounts!.xcashAccount!.balance_atomic ?? 0) / 1000000;
     }
   }
-
 
   double getAmountUsd() {
     if (accounts == null) {
@@ -95,7 +94,8 @@ class MainActivityFragmentTransferController extends BaseController {
     query["page"] = pullRefreshController.index;
     query["page_size"] = 100;
     query["type"] = "out";
-    List<Transfer>? transfers = await applicationController.getTransfers(query,coinSymbol == CoinSymbolUtil.coin_symbol_wxcash);
+    List<Transfer>? transfers = await applicationController.getTransfers(
+        query, coinSymbol == CoinSymbolUtil.coin_symbol_wxcash);
     if (transfers == null) {
       pullRefreshController.stopLoading(true);
       return;
@@ -116,11 +116,15 @@ class MainActivityFragmentTransferController extends BaseController {
     }
     UserInfo? userInfo = await applicationController.getUserInfo();
     Accounts? accounts = await applicationController.getAccounts();
-    if (userInfo == null ||
-        userInfo.user_id == null ||
-        accounts == null ||
-        accounts.xcashAccount == null ||
-        accounts.xcashAccount!.id == null) {
+    if (userInfo == null || userInfo.user_id == null || accounts == null) {
+      ToastUtil.showShortToast(AppConfig.appS.account_error_tips);
+      return;
+    }
+    Account? account = coinSymbol == CoinSymbolUtil.coin_symbol_wxcash
+        ? accounts.wxcashAccount
+        : accounts.xcashAccount;
+    if (account == null || account.id == null) {
+      ToastUtil.showShortToast(AppConfig.appS.account_error_tips);
       return;
     }
     Map<String, dynamic> data = {};
@@ -128,7 +132,7 @@ class MainActivityFragmentTransferController extends BaseController {
     if (paymentId != null) {
       data["payment_id"] = paymentId;
     }
-    data["atomic_amount"] = int.parse(amount!) * 1000000;
+    data["atomic_amount"] = (double.parse(amount!) * 1000000).floor();
     if (coinSymbol != null) {
       data["currency"] = coinSymbol;
     }
@@ -137,7 +141,7 @@ class MainActivityFragmentTransferController extends BaseController {
         Method.POST,
         UrlConfig.users_transfers_check
             .replaceAll(UrlConfig.urlKey, userInfo.user_id!)
-            .replaceAll(UrlConfig.urlKey1, accounts.xcashAccount!.id!),
+            .replaceAll(UrlConfig.urlKey1, account.id!),
         data: data, successCallback: (data, baseEntity) async {
       transfer = data;
       if (data != null) {
@@ -164,11 +168,15 @@ class MainActivityFragmentTransferController extends BaseController {
     }
     UserInfo? userInfo = await applicationController.getUserInfo();
     Accounts? accounts = await applicationController.getAccounts();
-    if (userInfo == null ||
-        userInfo.user_id == null ||
-        accounts == null ||
-        accounts.xcashAccount == null ||
-        accounts.xcashAccount!.id == null) {
+    if (userInfo == null || userInfo.user_id == null || accounts == null) {
+      ToastUtil.showShortToast(AppConfig.appS.account_error_tips);
+      return;
+    }
+    Account? account = coinSymbol == CoinSymbolUtil.coin_symbol_wxcash
+        ? accounts.wxcashAccount
+        : accounts.xcashAccount;
+    if (account == null || account.id == null) {
+      ToastUtil.showShortToast(AppConfig.appS.account_error_tips);
       return;
     }
     Map<String, dynamic> data = {};
@@ -176,7 +184,7 @@ class MainActivityFragmentTransferController extends BaseController {
     if (paymentId != null) {
       data["payment_id"] = paymentId;
     }
-    data["atomic_amount"] = int.parse(amount!) * 1000000;
+    data["atomic_amount"] = (double.parse(amount!) * 1000000).floor();
     if (code_2fa != null) {
       data["code_2fa"] = code_2fa;
     }
@@ -188,7 +196,7 @@ class MainActivityFragmentTransferController extends BaseController {
         Method.POST,
         UrlConfig.users_transfers
             .replaceAll(UrlConfig.urlKey, userInfo.user_id!)
-            .replaceAll(UrlConfig.urlKey1, accounts.xcashAccount!.id!),
+            .replaceAll(UrlConfig.urlKey1, account.id!),
         data: data, successCallback: (data, baseEntity) async {
       ToastUtil.showShortToast(
           AppConfig.appS.main_activity_fragment_transfer_transfer_success_tips);
@@ -215,13 +223,6 @@ class MainActivityFragmentTransferController extends BaseController {
         .refresh();
   }
 
-  void jumpToTransferDetailsActivity(Transfer transfer) async {
-    Bundle bundle = Bundle();
-    bundle.putObject(KeyConfig.transfer_key, transfer);
-    NavigatorUtil.jumpTo(context, ActivityName.TransferDetailsActivity,
-        bundle: bundle);
-  }
-
   Future<void> doRefresh() async {
     animationController.reset();
     animationController.forward();
@@ -242,6 +243,17 @@ class MainActivityFragmentTransferController extends BaseController {
     coinSymbol = CoinSymbolUtil.getSelectCoinSymbol();
     await initData();
     notifyListeners();
+  }
+
+  void jumpToTransferDetailsActivity(Transfer transfer) async {
+    Bundle bundle = Bundle();
+    bundle.putObject(KeyConfig.transfer_key, transfer);
+    NavigatorUtil.jumpTo(context, ActivityName.TransferDetailsActivity,
+        bundle: bundle);
+  }
+
+  void jumpToSwapActivity() async {
+    NavigatorUtil.jumpTo(context, ActivityName.SwapActivity);
   }
 
   @override

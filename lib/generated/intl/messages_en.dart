@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
 
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account_error_tips":
+            MessageLookupByLibrary.simpleMessage("Account error"),
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -142,6 +144,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Refresh"),
         "main_activity_fragment_transfer_send_text":
             MessageLookupByLibrary.simpleMessage("Send"),
+        "main_activity_fragment_transfer_swap_title":
+            MessageLookupByLibrary.simpleMessage("SWAP"),
         "main_activity_fragment_transfer_transfer_success_tips":
             MessageLookupByLibrary.simpleMessage("Transfer success"),
         "main_activity_tab_deposit":
@@ -183,6 +187,13 @@ class MessageLookup extends MessageLookupByLibrary {
                 "To start using your X-Bank  account, please verify your email address"),
         "server_error": MessageLookupByLibrary.simpleMessage("Server error"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "swap_activity_amount_empty_tips":
+            MessageLookupByLibrary.simpleMessage("Amount can\'t empty"),
+        "swap_activity_button_text":
+            MessageLookupByLibrary.simpleMessage("Swap"),
+        "swap_activity_success_tips":
+            MessageLookupByLibrary.simpleMessage("Swap success"),
+        "swap_activity_title": MessageLookupByLibrary.simpleMessage("Swap"),
         "switch_coin_activity_title":
             MessageLookupByLibrary.simpleMessage("Switch Coin"),
         "switch_coin_activity_wxcash_text":

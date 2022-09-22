@@ -128,6 +128,12 @@ class NetworkUtil {
               if (message != null && !message.contains("invalid")) {
                 tokenError = false;
               }
+            } else if (strs.length >= 3 &&
+                strs[0] == "users" &&
+                strs[2] == "swaps") {
+              if (message != null && !message.contains("invalid")) {
+                tokenError = false;
+              }
             } else if (strs.length >= 5 &&
                 strs[0] == "users" &&
                 strs[2] == "accounts" &&

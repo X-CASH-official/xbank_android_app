@@ -56,6 +56,18 @@ class Dimens {
     return ScreenUtil.getSize(112);
   }
 
+  static double get button_width_narrow {
+    return ScreenUtil.getSize(50);
+  }
+
+  static double get button_width_normal {
+    return ScreenUtil.getSize(100);
+  }
+
+  static double get button_width_board {
+    return ScreenUtil.getSize(150);
+  }
+
   static double get button_height_narrow {
     return ScreenUtil.getSize(30);
   }

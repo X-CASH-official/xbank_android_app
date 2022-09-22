@@ -12,6 +12,7 @@
   "wxcash_unit_text": "WXCASH",
   "copy_success": "复制成功",
   "usd_unit_text": "USD",
+  "account_error_tips": "Account error",
   "login_activity_login_title": "登录",
   "login_activity_login_text": "登录",
   "login_activity_account_hint": "请输入账号",
@@ -54,6 +55,7 @@
   "main_activity_fragment_deposit_copy_success_tips": "成功复制到粘贴板",
   "main_activity_fragment_deposit_scan_tips": "或者扫描下面的二维码",
   "main_activity_fragment_transfer_create_transfer_title": "创建交易",
+  "main_activity_fragment_transfer_swap_title": "转换",
   "main_activity_fragment_transfer_address_empty_tips": "地址不能为空",
   "main_activity_fragment_transfer_amount_empty_tips": "金额不能为空",
   "main_activity_fragment_transfer_transfer_success_tips": "交易成功",
@@ -99,5 +101,9 @@
   "change_language_activity_chinese_text": "中文",
   "switch_coin_activity_title": "切换币种",
   "switch_coin_activity_xcash_text": "XCASH",
-  "switch_coin_activity_wxcash_text": "WXCASH"
+  "switch_coin_activity_wxcash_text": "WXCASH",
+  "swap_activity_title": "交换",
+  "swap_activity_button_text": "交换",
+  "swap_activity_amount_empty_tips": "金额不能为空",
+  "swap_activity_success_tips": "交换成功"
 }

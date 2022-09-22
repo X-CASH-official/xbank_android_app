@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
 
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account_error_tips":
+            MessageLookupByLibrary.simpleMessage("Account error"),
         "app_name": MessageLookupByLibrary.simpleMessage("x-bank"),
         "back": MessageLookupByLibrary.simpleMessage("返回"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
@@ -128,6 +130,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("刷新"),
         "main_activity_fragment_transfer_send_text":
             MessageLookupByLibrary.simpleMessage("发送"),
+        "main_activity_fragment_transfer_swap_title":
+            MessageLookupByLibrary.simpleMessage("转换"),
         "main_activity_fragment_transfer_transfer_success_tips":
             MessageLookupByLibrary.simpleMessage("交易成功"),
         "main_activity_tab_deposit": MessageLookupByLibrary.simpleMessage("充值"),
@@ -166,6 +170,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("要开始使用您的X银行帐户，请验证您的电子邮件地址"),
         "server_error": MessageLookupByLibrary.simpleMessage("服务异常"),
         "submit": MessageLookupByLibrary.simpleMessage("提交"),
+        "swap_activity_amount_empty_tips":
+            MessageLookupByLibrary.simpleMessage("金额不能为空"),
+        "swap_activity_button_text": MessageLookupByLibrary.simpleMessage("交换"),
+        "swap_activity_success_tips":
+            MessageLookupByLibrary.simpleMessage("交换成功"),
+        "swap_activity_title": MessageLookupByLibrary.simpleMessage("交换"),
         "switch_coin_activity_title":
             MessageLookupByLibrary.simpleMessage("切换币种"),
         "switch_coin_activity_wxcash_text":

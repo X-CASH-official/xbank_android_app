@@ -181,6 +181,16 @@ class S {
     );
   }
 
+  /// `Account error`
+  String get account_error_tips {
+    return Intl.message(
+      'Account error',
+      name: 'account_error_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Login`
   String get login_activity_login_title {
     return Intl.message(
@@ -596,6 +606,16 @@ class S {
     return Intl.message(
       'CREATE TRANSFER',
       name: 'main_activity_fragment_transfer_create_transfer_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SWAP`
+  String get main_activity_fragment_transfer_swap_title {
+    return Intl.message(
+      'SWAP',
+      name: 'main_activity_fragment_transfer_swap_title',
       desc: '',
       args: [],
     );
@@ -1056,6 +1076,46 @@ class S {
     return Intl.message(
       'WXCASH',
       name: 'switch_coin_activity_wxcash_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swap`
+  String get swap_activity_title {
+    return Intl.message(
+      'Swap',
+      name: 'swap_activity_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swap`
+  String get swap_activity_button_text {
+    return Intl.message(
+      'Swap',
+      name: 'swap_activity_button_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount can't empty`
+  String get swap_activity_amount_empty_tips {
+    return Intl.message(
+      'Amount can\'t empty',
+      name: 'swap_activity_amount_empty_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swap success`
+  String get swap_activity_success_tips {
+    return Intl.message(
+      'Swap success',
+      name: 'swap_activity_success_tips',
       desc: '',
       args: [],
     );

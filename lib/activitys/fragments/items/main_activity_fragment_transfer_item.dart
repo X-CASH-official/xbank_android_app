@@ -72,7 +72,7 @@ class MainActivityFragmentTransferItem extends StatelessWidget {
           fontSize: Dimens.font_normal,
           content: ((data.atomic_amount ?? 0) / 1000000).toString() +
               " " +
-              (data.currency??""),
+              (data.currency ?? ""),
         ),
         DimenBoxs.vBoxSuperNarrow,
         NormalTextView(

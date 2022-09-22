@@ -145,13 +145,15 @@ class ApplicationController extends ChangeNotifier {
     return accounts;
   }
 
-  Future<List<Transfer>?> getTransfers(Map<String, dynamic> query,bool isWXCASH) async {
+  Future<List<Transfer>?> getTransfers(
+      Map<String, dynamic> query, bool isWXCASH) async {
     List<Transfer>? transfers;
     Accounts? accounts = await getAccounts();
     if (accounts == null) {
       return transfers;
     }
-    Account? account = isWXCASH?accounts.wxcashAccount:accounts.xcashAccount;
+    Account? account =
+        isWXCASH ? accounts.wxcashAccount : accounts.xcashAccount;
     if (account == null || account.id == null) {
       return transfers;
     }
