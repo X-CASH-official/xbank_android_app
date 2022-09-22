@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:framework/base/activity_manager.dart';
 import 'package:framework/base/bundle.dart';
 import 'package:framework/base/controllers/base_controller.dart';
 import 'package:framework/utils/network/method.dart';
 import 'package:framework/utils/toast_util.dart';
+import 'package:x_bank/activitys/main_activity.dart';
 import 'package:x_bank/configs/app_config.dart';
 import 'package:x_bank/configs/url_config.dart';
 import 'package:x_bank/models/account.dart';
@@ -13,6 +15,7 @@ import 'package:x_bank/utils/network_util.dart';
 import 'package:x_bank/utils/view_util.dart';
 
 import 'extra/application_controller.dart';
+import 'main_activity_controller.dart';
 
 class SwapActivityController extends BaseController {
   late ApplicationController applicationController;
@@ -98,6 +101,9 @@ class SwapActivityController extends BaseController {
       if (data != null) {
         ToastUtil.showShortToast(AppConfig.appS.swap_activity_success_tips);
         await initData(refreshAccount: true);
+        (ActivityManager().getTargetActivity<MainActivityState>()?.baseController
+        as MainActivityController)
+            .updateCoinSymbol();
       }
     }, errorCallback: (e) async {
       code_2fa = null;
